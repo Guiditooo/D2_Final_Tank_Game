@@ -25,17 +25,6 @@ public class Aimer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             StartAiming(target.position);
-
-
-            //Vector3 targetDir = target.position - transform.position;
-
-           
-            //transform.rotation = Quaternion.LookRotation(targetDir.normalized);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position += transform.forward;
         }
 
     }
