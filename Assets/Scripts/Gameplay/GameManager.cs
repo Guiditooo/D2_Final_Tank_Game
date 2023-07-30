@@ -19,11 +19,21 @@ public class GameManager : MonoBehaviour
     private float timer;
     private int timerInt;
 
+    public static int Score { get; private set; }
+    public static int SecondsCount { get; private set; } = 0;
+    public static int DestroyedBombs { get; private set; } = 0;
+
     private void Awake()
     {
+        Bomb.OnBombDestroy += IncreaseBombCounter;
         SetInitialTime();
         timerInt = (int)initialTime;
         timer = 0;
+    }
+
+    private void OnDestroy()
+    {
+        Bomb.OnBombDestroy -= IncreaseBombCounter;
     }
 
     private void Update()
@@ -33,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             timer--;
             timerInt--;
+            SecondsCount++;
             if (timerInt < 0)
             {
                 GameOver();
@@ -61,9 +72,13 @@ public class GameManager : MonoBehaviour
     {
         GameRunning = false;
         Time.timeScale = 0;
+        Score = (66660 * DestroyedBombs + 1859 * (60 - SecondsCount));
         OnGameOver();
     }
 
-
+    private void IncreaseBombCounter()
+    {
+        DestroyedBombs++;
+    }
 
 }

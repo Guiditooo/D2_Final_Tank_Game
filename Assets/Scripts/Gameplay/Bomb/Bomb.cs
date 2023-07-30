@@ -6,13 +6,19 @@ public abstract class Bomb : MonoBehaviour
 {
     public static System.Action OnBombDestroy;
     protected abstract void Behaviour();
+    public static int BombCount { get; private set; } = 0;
+
+    private void Awake()
+    {
+        BombCount++;
+    }
     private void Update()
     {
         Behaviour();
     }
     private void OnDestroy()
     {
-        OnBombDestroy();
+        BombCount--;
     }
     public void GetDestroyed()
     {
