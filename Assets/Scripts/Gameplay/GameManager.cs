@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
     [Header("Score Options")]
     [SerializeField] private int bombScoreMultiplier = 66660;
     [SerializeField] private int secondScoreMultiplier = 1859;
+    [SerializeField] private int minSecondCount = 10;
+    [SerializeField] private int minSecondCoef = 10;
     [SerializeField] private int maxSecondCount = 60;
+    [SerializeField] private int maxSecondCoef = 1;
     /// <summary>
     /// Bypasses the saved time setted on main menu and uses the fixed inspector time.
     /// </summary>
@@ -42,19 +45,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime * timerMultiplier;
-        if (timer > 1)
+        if (GameRunning)
         {
-            timer--;
-            timerInt--;
-            SecondsCount++;
-            if (timerInt < 0)
+            timer += Time.deltaTime * timerMultiplier;
+            if (timer > 1)
             {
-                GameOver();
-            }
-            else
-            {
-                OnTimerChange?.Invoke(timerInt);
+                timer--;
+                timerInt--;
+                SecondsCount++;
+                if (timerInt <= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    OnTimerChange?.Invoke(timerInt);
+                }
             }
         }
     }
@@ -76,10 +82,16 @@ public class GameManager : MonoBehaviour
     {
         GameRunning = false;
         //Time.timeScale = 0;
+        GetTimeMultiplier();
         BombScore = bombScoreMultiplier * Bomb.BombsDestroyed;
-        TimeScore = secondScoreMultiplier * (maxSecondCount - SecondsCount);
+        TimeScore = secondScoreMultiplier * timerInt;
         TotalScore = (BombScore + TimeScore);
         
         OnGameOver?.Invoke();
+    }
+
+    private void GetTimeMultiplier()
+    {
+        secondScoreMultiplier = (int)(minSecondCoef + ((maxSecondCoef - minSecondCoef) / (maxSecondCount - minSecondCount)) * (initialTime - minSecondCount));
     }
 }

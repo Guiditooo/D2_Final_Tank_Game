@@ -15,13 +15,15 @@ public class UIController : MonoBehaviour
     
     [Header("Gameplay")]
     [SerializeField] private string gameplaySceneName = "";
+    [SerializeField] private CanvasGroup UIPanel = null;
 
     [Header("Game Over Section")]
     [SerializeField] private TMP_Text bombsPoints = null;
     [SerializeField] private TMP_Text timerPoints = null;
     [SerializeField] private TMP_Text scorePoints = null;
+    [SerializeField] private CanvasGroup gameOverPanel = null;
     [SerializeField] private CanvasGroup summaryPanel = null;
-    [SerializeField] private CanvasGroup hiScorePanel = null;
+    //[SerializeField] private CanvasGroup hiScorePanel = null;
 
     private void Awake()
     {
@@ -96,12 +98,15 @@ public class UIController : MonoBehaviour
 
     private void LoadGameOver()
     {
+        HidePanel(UIPanel);
+        ShowPanel(gameOverPanel);
         ShowPanel(summaryPanel);
+        CalculateScores();
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
-        SceneManager.LoadScene();
+        SceneManager.LoadScene(gameplaySceneName);
     }
 
 }
