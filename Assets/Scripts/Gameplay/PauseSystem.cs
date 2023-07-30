@@ -13,10 +13,12 @@ public class PauseSystem : MonoBehaviour
     private void Awake()
     {
         InputManager.OnPausePress += PauseControl;
+        GameManager.OnGameOver += RestartGame;
     }
     private void OnDestroy()
     {
         InputManager.OnPausePress -= PauseControl;
+        GameManager.OnGameOver -= RestartGame;
     }
 
     private void Start()
@@ -35,6 +37,11 @@ public class PauseSystem : MonoBehaviour
             Debug.Log("Envio estado de pausa: " + Paused);
             OnPauseStateChange?.Invoke(actualState);
         }
+    }
+
+    private void RestartGame()
+    {
+        Paused = true;
     }
 
 }

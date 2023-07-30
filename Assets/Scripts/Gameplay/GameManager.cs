@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         SetInitialTime();
         timerInt = (int)initialTime;
         timer = 0;
+        GameRunning = true;
     }
 
     private void OnDestroy()
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour
                 timer--;
                 timerInt--;
                 SecondsCount++;
-                if (timerInt <= 0)
+                if (timerInt < 0)
                 {
                     GameOver();
                 }
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0;
         GetTimeMultiplier();
         BombScore = bombScoreMultiplier * Bomb.BombsDestroyed;
-        TimeScore = secondScoreMultiplier * timerInt;
+        TimeScore = secondScoreMultiplier * (timerInt+1);
         TotalScore = (BombScore + TimeScore);
         
         OnGameOver?.Invoke();
