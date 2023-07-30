@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class Bomb : MonoBehaviour
 {
-    public static System.Action OnBombDestroy;
     protected abstract void Behaviour();
     public static int BombCount { get; private set; } = 0;
+    public static int BombsDestroyed { get; private set; } = 0;
 
     private void Awake()
     {
@@ -19,6 +19,7 @@ public abstract class Bomb : MonoBehaviour
     private void OnDestroy()
     {
         BombCount--;
+        BombsDestroyed++;
     }
     public void GetDestroyed()
     {
