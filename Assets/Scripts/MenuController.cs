@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup startingPanel;
+    [SerializeField] private float fadeSpeed = 1.0f;
 
     private CanvasGroup actualPanel;
-
     private void Awake()
     {
         actualPanel = startingPanel;
@@ -42,7 +42,7 @@ public class MenuController : MonoBehaviour
         float t = 0;
         while (t<1)
         {
-            t += Time.deltaTime;
+            t += Time.deltaTime * fadeSpeed;
             panel.alpha = t;
             yield return null;
         }
@@ -56,7 +56,7 @@ public class MenuController : MonoBehaviour
         float t = 1;
         while (t > 0)
         {
-            t -= Time.deltaTime;
+            t -= Time.deltaTime * fadeSpeed;
             panel.alpha = t;
             yield return null;
         }

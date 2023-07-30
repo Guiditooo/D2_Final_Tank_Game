@@ -5,39 +5,25 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    #region VARIABLES
-    #region SERIALIZED VARIABLES
+
     [SerializeField] private CanvasGroup pausePanel;
 
     [Header("Menu scene")]
     [SerializeField] private string menuSceneName = "";
-    #endregion
 
-    #region STATIC VARIABLES
+    [SerializeField] private TMP_Text timerText = null;
 
-    #endregion
+    public static System.Action OnGameOverButtonClick;
 
-    #region PRIVATE VARIABLES
-    #endregion
-    #endregion
-
-    #region METHODS
-    #region PUBLIC METHODS
-
-    #endregion
-
-    #region STATIC METHODS
-
-    #endregion
-
-    #region PRIVATE METHODS
     private void Awake()
     {
         PauseSystem.OnPauseStateChange += PausePanelController;
+        GameManager.OnTimerChange += UpdateTimerText;
     }
     private void OnDestroy()
     {
         PauseSystem.OnPauseStateChange -= PausePanelController;
+        GameManager.OnTimerChange -= UpdateTimerText;
     }
     private void PausePanelController(PauseStates state)
     {
@@ -66,7 +52,16 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene(menuSceneName);
     }
-    #endregion
-    #endregion
+
+    private void UpdateTimerText(int newValue)
+    {
+        timerText.text = newValue.ToString();
+    }
+
+    public void LoadGameOverScene()
+    {
+        OnGameOverButtonClick();
+    }
+
 }
 
