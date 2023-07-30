@@ -42,9 +42,11 @@ public class UIController : MonoBehaviour
         if (state == PauseStates.Resumed)
         {
             HidePanel(pausePanel); //if it is resumed, then, i should show the message
+            ShowPanel(UIPanel);
         }
         else
         {
+            HidePanel(UIPanel);
             ShowPanel(pausePanel);
         }
     }
