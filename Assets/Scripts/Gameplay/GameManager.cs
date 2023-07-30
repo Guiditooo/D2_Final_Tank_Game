@@ -6,6 +6,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timerMultiplier = 1.0f;
     [SerializeField] private bool bypassSavedTime = false;
     [SerializeField] private int fixedInitialTime = 10;
+
+    [Header("Score Options")]
+    [SerializeField] private int bombScoreMultiplier = 66660;
+    [SerializeField] private int secondScoreMultiplier = 1859;
+    [SerializeField] private int maxSecondCount = 60;
     /// <summary>
     /// Bypasses the saved time setted on main menu and uses the fixed inspector time.
     /// </summary>
@@ -19,13 +24,13 @@ public class GameManager : MonoBehaviour
     private float timer;
     private int timerInt;
 
-    public static int Score { get; private set; }
+    public static int TotalScore { get; private set; } = 0;
+    public static int BombScore { get; private set; } = 0;
+    public static int TimeScore { get; private set; } = 0;
     public static int SecondsCount { get; private set; } = 0;
-    public static int DestroyedBombs { get; private set; } = 0;
 
     private void Awake()
     {
-        Bomb.OnBombDestroy += IncreaseBombCounter;
         SetInitialTime();
         timerInt = (int)initialTime;
         timer = 0;
@@ -33,7 +38,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Bomb.OnBombDestroy -= IncreaseBombCounter;
     }
 
     private void Update()
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                OnTimerChange(timerInt);
+                OnTimerChange?.Invoke(timerInt);
             }
         }
     }
@@ -65,20 +69,17 @@ public class GameManager : MonoBehaviour
         {
             initialTime = PlayerPrefs.GetInt("Time");
         }
-        OnTimerChange((int)initialTime);
+        OnTimerChange?.Invoke((int)initialTime);
     }
 
     private void GameOver()
     {
         GameRunning = false;
-        Time.timeScale = 0;
-        Score = (66660 * DestroyedBombs + 1859 * (60 - SecondsCount));
-        OnGameOver();
+        //Time.timeScale = 0;
+        BombScore = bombScoreMultiplier * Bomb.BombsDestroyed;
+        TimeScore = secondScoreMultiplier * (maxSecondCount - SecondsCount);
+        TotalScore = (BombScore + TimeScore);
+        
+        OnGameOver?.Invoke();
     }
-
-    private void IncreaseBombCounter()
-    {
-        DestroyedBombs++;
-    }
-
 }
