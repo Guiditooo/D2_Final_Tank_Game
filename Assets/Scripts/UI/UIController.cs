@@ -19,7 +19,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text muteButtonText = null;
 
     [Header("Gameplay")]
-    [SerializeField] private string gameplaySceneName = "";
     [SerializeField] private CanvasGroup UIPanel = null;
     [SerializeField] private TMP_Text remainingBombs = null;
 
@@ -29,9 +28,15 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text scorePoints = null;
     [SerializeField] private CanvasGroup gameOverPanel = null;
     [SerializeField] private CanvasGroup summaryPanel = null;
+    [SerializeField] private Button summaryNextButton = null;
+    [SerializeField] private CanvasGroup nameInputPanel = null;
+    [SerializeField] private TMP_InputField nameInputField = null;
+    [SerializeField] private Button nameInputNextButton = null;
+    [SerializeField] private CanvasGroup highScorePanel = null;
 
     [Header("HighScore Section")]
-    [SerializeField] private GT.HighScoreManager highsCoreManager = null;
+    [SerializeField] private GT.HighScoreManager highScoreManager = null;
+
     [SerializeField] private TMP_Text FirstPosScore = null;
     [SerializeField] private TMP_Text SecondPosScore = null;
     [SerializeField] private TMP_Text ThirdPosScore = null;
@@ -39,6 +44,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text FirstPosName = null;
     [SerializeField] private TMP_Text SecondPosName = null;
     [SerializeField] private TMP_Text ThirdPosName = null;
+
+    [SerializeField] private Image[] ScoreSlotBG;
 
     private void Awake()
     {
@@ -55,6 +62,8 @@ public class UIController : MonoBehaviour
         GameManager.OnGameOver -= LoadGameOver;
         Bomb.OnGettingDestroyed -= UpdateBombCounter;
         muteButton.onClick.RemoveListener(ToggleMute);
+        summaryNextButton.onClick.RemoveAllListeners();
+        nameInputNextButton.onClick.RemoveAllListeners();
     }
     private void Start()
     {
@@ -87,6 +96,7 @@ public class UIController : MonoBehaviour
     }
     public void BackToMenu()
     {
+        StopAllCoroutines();
         SceneManager.LoadScene(menuSceneName);
     }
 
@@ -105,6 +115,15 @@ public class UIController : MonoBehaviour
         StartCoroutine(ShowTimeScore);
         StartCoroutine(ShowBombScore);
         StartCoroutine(ShowTotalScore);
+
+        if (highScoreManager.CompareWithHighScores(GameManager.TotalScore))
+        {
+            summaryNextButton.onClick.AddListener(LoadInputNamePanel);
+        }
+        else
+        {
+            summaryNextButton.onClick.AddListener(LoadHighScores);
+        }
     }
     IEnumerator ShowScore(TMP_Text text, int value, float timeToShow)
     {
@@ -121,20 +140,53 @@ public class UIController : MonoBehaviour
         text.text = value.ToString();
     }
 
-    private void LoadGameOver()
+    private void LoadGameOver(bool hasWon)
     {
         HidePanel(UIPanel);
         ShowPanel(gameOverPanel);
         ShowPanel(summaryPanel);
         CalculateScores();
+
     }
 
-    public void RestartGame()
+    private void LoadInputNamePanel()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(gameplaySceneName);
+        HidePanel(summaryPanel);
+        ShowPanel(nameInputPanel);
+        nameInputNextButton.onClick.AddListener(SaveHighScore);
+        nameInputNextButton.onClick.AddListener(LoadHighScores);
+    }
+    public void LoadHighScores()
+    {
+        HidePanel(summaryPanel);
+        HidePanel(nameInputPanel);
+
+        GT.HighScore[] highScores = highScoreManager.GetHighScores();
+
+        FirstPosName.text = highScores[0].name + " ~";
+        SecondPosName.text = highScores[1].name + " ~";
+        ThirdPosName.text = highScores[2].name + " ~";
+
+        FirstPosScore.text = highScores[0].score.ToString();
+        SecondPosScore.text = highScores[1].score.ToString();
+        ThirdPosScore.text = highScores[2].score.ToString();
+
+        ShowPanel(highScorePanel);
     }
 
+
+    public void SaveHighScore()
+    {
+        GT.HighScore hs;
+        hs.name = nameInputField.text;
+        hs.score = GameManager.TotalScore;
+        int slotIndex = highScoreManager.InsertInHighScore(hs);
+        if(slotIndex>=3)
+        {
+            return;
+        }
+        StartCoroutine(HighLightScoreSlot(slotIndex));
+    }
     private void UpdateBombCounter()
     {
         remainingBombs.text = Bomb.BombCount.ToString();
@@ -149,6 +201,16 @@ public class UIController : MonoBehaviour
     {
         muteButtonText.text = AudioManager.instance.IsMuted ? "Unmute" : "Mute";
         AudioManager.instance.ToggleMute();
+    }
+
+    private IEnumerator HighLightScoreSlot(int index)
+    {
+        Image BG = ScoreSlotBG[index];
+        while (true)
+        {
+            BG.color = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.05f, 0.2f);
+            yield return new WaitForSeconds(0.65f);
+        }
     }
 
 }

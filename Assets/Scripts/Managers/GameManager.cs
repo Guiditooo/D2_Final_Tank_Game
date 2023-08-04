@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public static System.Action<int> OnTimerChange;
     //public static System.Action<int> OnBombsChange;
-    public static System.Action OnGameOver;
+    public static System.Action<bool> OnGameOver;
     public static bool GameRunning { get; private set; } = true;
 
     private float initialTime;
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                 SecondsCount++;
                 if (timerInt < 0)
                 {
-                    GameOver();
+                    GameOver(false);
                 }
                 else
                 {
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             }
             if (Bomb.BombsDestroyed == BombCount)
             {
-                GameOver();
+                GameOver(true);
             }
         }
     }
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
 
     public int GetInitialBombCount() => bombCount;
-    private void GameOver()
+    private void GameOver(bool hasWon)
     {
         GameRunning = false;
         //Time.timeScale = 0;
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         TimeScore = secondScoreMultiplier * (timerInt + 1);
         TotalScore = (BombScore + TimeScore);
 
-        OnGameOver?.Invoke();
+        OnGameOver?.Invoke(hasWon);
     }
 
     private void GetTimeMultiplier()

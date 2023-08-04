@@ -21,19 +21,6 @@ namespace GT
         {
             path = Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME);
         }
-        private void Start()
-        {
-            Debug.Log(ReadFile());
-            HighScore highScore;
-            highScore.name = "GTB";
-            highScore.score = 10000000;
-            if(CompareWithHighScores(highScore.score))
-            {
-                InsertInHighScore(highScore);
-            }
-            Debug.Log(ReadFile());
-        }
-
         public HighScore[] GetHighScores() => highScores;
 
         public bool CompareWithHighScores(int score)
@@ -49,8 +36,9 @@ namespace GT
             return false;
         }
 
-        public void InsertInHighScore(HighScore hs)
+        public int InsertInHighScore(HighScore hs)
         {
+            int plancingIndex = -1;
             RetrieveHighScores();
             for (int i = 0; i < highScores.Length; i++)
             {
@@ -62,10 +50,12 @@ namespace GT
                     }
 
                     highScores[i] = hs;
+                    plancingIndex = i;
                     break;
                 }
             }
             SaveHighScores();
+            return plancingIndex;
         }
 
         private void RetrieveHighScores()

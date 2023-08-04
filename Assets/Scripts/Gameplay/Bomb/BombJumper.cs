@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombJumper : MonoBehaviour, IBombBehavior
+public class BombJumper : IBombBehavior
 {
     private Rigidbody rb;
     private float bounceForce = 50f;
@@ -19,12 +19,8 @@ public class BombJumper : MonoBehaviour, IBombBehavior
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             isGrounded = false;
         }
-        if (transform.position.y < 7)
-        {
-            isGrounded = true;
-        }
     }
-
+    /*
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Limit"))
@@ -41,5 +37,5 @@ public class BombJumper : MonoBehaviour, IBombBehavior
             isGrounded = true;
         }
     }
-    
+    */
 }

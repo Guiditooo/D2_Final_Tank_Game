@@ -39,7 +39,7 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
-    private void RestartGame()
+    private void RestartGame(bool a)
     {
         Paused = true;
     }

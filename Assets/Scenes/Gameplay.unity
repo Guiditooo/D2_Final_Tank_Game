@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 864989300}
   - component: {fileID: 864989299}
   m_Layer: 5
-  m_Name: Next Button
+  m_Name: Input Next Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -836,8 +836,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6196304832880700581, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
+      propertyPath: m_ContentType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196304832880700581, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196304832880700581, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
       propertyPath: m_CharacterLimit
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196304832880700581, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6196304832880700582, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
       propertyPath: m_Pivot.x
@@ -958,6 +970,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196304832880700582, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
   m_PrefabInstance: {fileID: 1049551436}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1049551438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6196304832880700581, guid: 4726a5de4e788fb4fb20b3bd976d8c60, type: 3}
+  m_PrefabInstance: {fileID: 1049551436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1072333941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2170,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9052910199375634306, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
   m_PrefabInstance: {fileID: 36333161868427307}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &36333161868427310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6571850599587241104, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
+  m_PrefabInstance: {fileID: 36333161868427307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &77288868294036187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,6 +2869,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9052910199375634306, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
   m_PrefabInstance: {fileID: 1745993987966537366}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745993987966537369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6571850599587241104, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
+  m_PrefabInstance: {fileID: 1745993987966537366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1750948391792100295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2996,7 +3041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3072,7 +3117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSize
-      value: 96.6
+      value: 98.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -3217,6 +3266,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9052910199375634306, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
   m_PrefabInstance: {fileID: 2192080666823183837}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2192080666823183840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6571850599587241104, guid: f443bd8451d2ad7478f26f50f6e4e49f, type: 3}
+  m_PrefabInstance: {fileID: 2192080666823183837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2360688770782269831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,7 +3448,6 @@ MonoBehaviour:
   timerText: {fileID: 7684761511871800984}
   muteButton: {fileID: 1626629035}
   muteButtonText: {fileID: 285029260}
-  gameplaySceneName: Gameplay
   UIPanel: {fileID: 896041112342023626}
   remainingBombs: {fileID: 456406375653412886}
   bombsPoints: {fileID: 851527312}
@@ -3396,13 +3455,22 @@ MonoBehaviour:
   scorePoints: {fileID: 1160494529}
   gameOverPanel: {fileID: 6952552005426504474}
   summaryPanel: {fileID: 5429788268340177558}
-  highsCoreManager: {fileID: 0}
+  summaryNextButton: {fileID: 8565452668361707487}
+  nameInputPanel: {fileID: 1939864256}
+  nameInputField: {fileID: 1049551438}
+  nameInputNextButton: {fileID: 864989299}
+  highScorePanel: {fileID: 12042074006560717}
+  highScoreManager: {fileID: 853898400}
   FirstPosScore: {fileID: 1499498661}
   SecondPosScore: {fileID: 2086529047}
   ThirdPosScore: {fileID: 2031135370}
   FirstPosName: {fileID: 1257168604}
   SecondPosName: {fileID: 15026686}
   ThirdPosName: {fileID: 1355747680}
+  ScoreSlotBG:
+  - {fileID: 2192080666823183840}
+  - {fileID: 1745993987966537369}
+  - {fileID: 36333161868427310}
 --- !u!114 &2567445478339959858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3540,6 +3608,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2549261337315694314}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: HidePanel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 12042074006560717}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2549261337315694314}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: BackToMenu
@@ -3733,7 +3813,7 @@ MonoBehaviour:
   maxSecondCoef: 1
   bombSpawner: {fileID: 1655071348}
   bypassBombCount: 1
-  fixedBombCount: 25
+  fixedBombCount: 2
   distanceFromPlayer: 100
   bombSpawnDelay: 0.2
   playerTransform: {fileID: 1267908494}
@@ -3913,6 +3993,10 @@ PrefabInstance:
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSizeMax
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
@@ -4163,7 +4247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSize
-      value: 96.6
+      value: 98.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -5016,7 +5104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5088,11 +5176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_text
-      value: Score
+      value: Total ~
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSize
-      value: 112.7
+      value: 114.95
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -5206,7 +5294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSize
-      value: 96.6
+      value: 98.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -5521,31 +5613,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1096372148085153712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2549261337315694314}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: HidePanel
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5429788268340177558}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2549261337315694314}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ShowPanel
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1939864256}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8593192052073645198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5601,7 +5669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5673,11 +5741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_text
-      value: Time Used
+      value: Remaining Time
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_fontSize
-      value: 96.6
+      value: 98.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -5785,7 +5857,7 @@ GameObject:
   - component: {fileID: 1096372148085153712}
   - component: {fileID: 8565452668361707487}
   m_Layer: 5
-  m_Name: Next Button
+  m_Name: Summary Next Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
