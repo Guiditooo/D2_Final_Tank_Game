@@ -4,10 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class MenuController : MonoBehaviour
 {
+    [Header("Canvas Related")]
     [SerializeField] private CanvasGroup startingPanel;
     [SerializeField] private float fadeSpeed = 1.0f;
+
+    
 
     private CanvasGroup actualPanel;
     private void Awake()
