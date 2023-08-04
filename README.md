@@ -34,7 +34,7 @@
 
 # Basic Requirements From 1 to 4
 * [1] - The project must not contain errors: on editor console, while building, nor runtime crashes. DONE
-* [2] - Every piece of code MUST be contained by a custom namespace. ONGOING
+* [2] - Every piece of code MUST be contained by a custom namespace. DONE
 * [3] - The Main Menu shows the devs and artists names. This text must be a TextAsset.
 * [4] - The UI MUST be responsive. DONE
 * [5] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
