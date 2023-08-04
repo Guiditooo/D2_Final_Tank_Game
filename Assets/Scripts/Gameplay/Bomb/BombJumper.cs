@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombJumper : IBombBehavior
+public class BombJumper : MonoBehaviour, IBombBehavior
 {
     private Rigidbody rb;
-    private float bounceForce = 50f;
+    private float bounceForce = 15f;
     private bool isGrounded = true;
 
     public BombJumper(GameObject bomb)
@@ -14,10 +14,9 @@ public class BombJumper : IBombBehavior
     }
     public void ExecuteBehavior()
     {
-        if (rb != null && isGrounded)
+        if (rb != null && rb.velocity.magnitude < 0.05f)
         {
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
     /*
