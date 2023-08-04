@@ -4,31 +4,35 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ParamConfigurator : MonoBehaviour
+namespace GT
 {
-    private Dictionary<string, int> parameters = new Dictionary<string, int>();
-    public void SaveParameters()
+
+    public class ParamConfigurator : MonoBehaviour
     {
-        foreach (OptionValueChanger OVC in GetComponentsInChildren<OptionValueChanger>())
+        private Dictionary<string, int> parameters = new Dictionary<string, int>();
+        public void SaveParameters()
         {
-            int value = int.MaxValue;
-            value = (int)((OVC.GetComponentInChildren<Slider>()).value);
-            if(parameters.ContainsKey(OVC.name))
+            foreach (OptionValueChanger OVC in GetComponentsInChildren<OptionValueChanger>())
             {
-                parameters[OVC.name] = value;
+                int value = int.MaxValue;
+                value = (int)((OVC.GetComponentInChildren<Slider>()).value);
+                if (parameters.ContainsKey(OVC.name))
+                {
+                    parameters[OVC.name] = value;
+                }
+                else
+                {
+                    parameters.Add(OVC.name, value);
+                }
             }
-            else
+
+            foreach (string key in parameters.Keys)
             {
-                parameters.Add(OVC.name, value);
+                PlayerPrefs.SetInt(key, parameters[key]);
+                Debug.Log("Saved Followin' Params: " + key + " - " + parameters[key]);
+                PlayerPrefs.Save();
             }
         }
 
-        foreach (string key in parameters.Keys)
-        {
-            PlayerPrefs.SetInt(key, parameters[key]);
-            Debug.Log("Saved Followin' Params: " + key + " - " + parameters[key]);
-            PlayerPrefs.Save();
-        }
     }
-
 }

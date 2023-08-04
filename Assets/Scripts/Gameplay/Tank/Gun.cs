@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+namespace GT
 {
-    [SerializeField] private Transform bulletSpawnPoint = null;
-    [SerializeField] private Transform bulletFolder = null;
-    [SerializeField] private GameObject bulletPrefab = null;
-
-    private List<Bullet> bulletList = new List<Bullet>();
-
-    private void Awake()
+    public class Gun : MonoBehaviour
     {
-        Aimer.OnAim += Shoot;
-    }
-    private void OnDestroy()
-    {
-        Aimer.OnAim -= Shoot;
-    }
+        [SerializeField] private Transform bulletSpawnPoint = null;
+        [SerializeField] private Transform bulletFolder = null;
+        [SerializeField] private GameObject bulletPrefab = null;
 
-    private void Shoot(Quaternion rotation)
-    {
-        GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation, bulletFolder);
-    }
+        private List<Bullet> bulletList = new List<Bullet>();
 
+        private void Awake()
+        {
+            Aimer.OnAim += Shoot;
+        }
+        private void OnDestroy()
+        {
+            Aimer.OnAim -= Shoot;
+        }
+
+        private void Shoot(Quaternion rotation)
+        {
+            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation, bulletFolder);
+        }
+
+    }
 }

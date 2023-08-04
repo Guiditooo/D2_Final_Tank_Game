@@ -1,4 +1,7 @@
-public interface IBombBehavior
+namespace GT
 {
-    void ExecuteBehavior();
+    public interface IBombBehavior
+    {
+        void ExecuteBehavior();
+    }
 }

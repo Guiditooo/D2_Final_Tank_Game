@@ -2,46 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace GT
 {
-    [SerializeField] private float bulletSpeed = 1.0f;
-
-    private Vector3 fixedForward = new Vector3(0, 90, 0);
-
-    private Rigidbody rb = null;
-
-    public static int BulletCount { private set; get; } = 0;
-    private void Awake()
+    public class Bullet : MonoBehaviour
     {
-        BulletCount++;
-        rb = GetComponent<Rigidbody>();
-        //transform.forward = transform.forward + fixedForward;
-    }
+        [SerializeField] private float bulletSpeed = 1.0f;
 
-    private void Start()
-    {
-        rb.AddForce(transform.right * bulletSpeed, ForceMode.Impulse);
-    }
+        private Vector3 fixedForward = new Vector3(0, 90, 0);
 
-    private void FixedUpdate()
-    {
-        //transform.Translate((transform.right) * Time.deltaTime * bulletSpeed);
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Bomb")
+        private Rigidbody rb = null;
+
+        public static int BulletCount { private set; get; } = 0;
+        private void Awake()
         {
-            collision.collider.GetComponent<Bomb>().GetDestroyed();
-            //Tirar particulas
-            //Hacer sonidito
-            Destroy(gameObject);
+            BulletCount++;
+            rb = GetComponent<Rigidbody>();
+            //transform.forward = transform.forward + fixedForward;
         }
-        if(collision.collider.tag == "Limit")
+
+        private void Start()
         {
-            //Tirar Particulas
-            //Hacer Sonidito
-            Destroy(gameObject);
+            rb.AddForce(transform.right * bulletSpeed, ForceMode.Impulse);
         }
-        
+
+        private void FixedUpdate()
+        {
+            //transform.Translate((transform.right) * Time.deltaTime * bulletSpeed);
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.tag == "Bomb")
+            {
+                collision.collider.GetComponent<Bomb>().GetDestroyed();
+                //Tirar particulas
+                //Hacer sonidito
+                Destroy(gameObject);
+            }
+            if (collision.collider.tag == "Limit")
+            {
+                //Tirar Particulas
+                //Hacer Sonidito
+                Destroy(gameObject);
+            }
+
+        }
     }
 }

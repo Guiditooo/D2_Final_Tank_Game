@@ -1,4 +1,5 @@
-
+namespace GT
+{
     public enum MovementDirection
     {
         Backward,
@@ -7,3 +8,4 @@
         Right,
         None
     }
+}

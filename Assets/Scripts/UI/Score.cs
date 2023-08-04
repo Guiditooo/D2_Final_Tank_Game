@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score : MonoBehaviour
+namespace GT
 {
-    [SerializeField] private bool isSelected = false;
 
-    private UnityEngine.UI.Image img = null;
-
-    private void Awake()
+    public class Score : MonoBehaviour
     {
-        img = GetComponent<UnityEngine.UI.Image>();
-    }
+        [SerializeField] private bool isSelected = false;
 
-    private void Update()
-    {
-        if(isSelected)
+        private UnityEngine.UI.Image img = null;
+
+        private void Awake()
         {
-            img.color = new Color(Random.Range(0,1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f), 0.15f);
+            img = GetComponent<UnityEngine.UI.Image>();
         }
-    }
 
+        private void Update()
+        {
+            if (isSelected)
+            {
+                img.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f), 0.15f);
+            }
+        }
+
+    }
 }

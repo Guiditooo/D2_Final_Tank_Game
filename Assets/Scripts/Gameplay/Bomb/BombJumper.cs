@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombJumper : MonoBehaviour, IBombBehavior
+namespace GT
 {
-    private Rigidbody rb;
-    private float bounceForce = 15f;
+    public class BombJumper : MonoBehaviour, IBombBehavior
+    {
+        private Rigidbody rb;
+        private float bounceForce = 15f;
 
-    public BombJumper(GameObject bomb)
-    {
-        rb = bomb.GetComponent<Rigidbody>();
-    }
-    public void ExecuteBehavior()
-    {
-        if (rb != null && rb.velocity.magnitude < 0.05f)
+        public BombJumper(GameObject bomb)
         {
-            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+            rb = bomb.GetComponent<Rigidbody>();
         }
+        public void ExecuteBehavior()
+        {
+            if (rb != null && rb.velocity.magnitude < 0.05f)
+            {
+                rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+            }
+        }
+
     }
-    
+
 }
