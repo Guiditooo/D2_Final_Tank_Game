@@ -6,7 +6,6 @@ public class BombJumper : MonoBehaviour, IBombBehavior
 {
     private Rigidbody rb;
     private float bounceForce = 15f;
-    private bool isGrounded = true;
 
     public BombJumper(GameObject bomb)
     {
@@ -19,22 +18,5 @@ public class BombJumper : MonoBehaviour, IBombBehavior
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
         }
     }
-    /*
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Limit"))
-        {
-            isGrounded = true;
-        }
-
-    }
     
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Limit"))
-        {
-            isGrounded = true;
-        }
-    }
-    */
 }

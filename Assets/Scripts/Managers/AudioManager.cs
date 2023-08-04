@@ -42,7 +42,6 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeAudioSettings()
     {
-
         masterVolume = LookForPlayerPrefs(AUDIO_MASTER_KEY, masterVolume);
         soundVolume = LookForPlayerPrefs(AUDIO_SOUND_KEY, soundVolume);
         musicVolume = LookForPlayerPrefs(AUDIO_MUSIC_KEY, musicVolume);
@@ -50,7 +49,6 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat(AM_MASTER_KEY, ConvertSliderValueToDecibel(masterVolume));
         audioMixer.SetFloat(AM_SOUND_KEY, ConvertSliderValueToDecibel(soundVolume));
         audioMixer.SetFloat(AM_MUSIC_KEY, ConvertSliderValueToDecibel(musicVolume));
-
     }
 
     public void SetAudioMasterRef(float master)

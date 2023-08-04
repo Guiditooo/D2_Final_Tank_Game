@@ -3443,9 +3443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cde25bf4edd7ca4e98963d4604efe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 6519010035374349348}
+  colorMultiplier: 65
   menuSceneName: Menu
   timerText: {fileID: 7684761511871800984}
+  pausePanel: {fileID: 6519010035374349348}
   muteButton: {fileID: 1626629035}
   muteButtonText: {fileID: 285029260}
   UIPanel: {fileID: 896041112342023626}
@@ -3803,7 +3804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMultiplier: 1
-  bypassSavedTime: 1
+  bypassSavedTime: 0
   fixedInitialTime: 99999
   bombScoreMultiplier: 66660
   secondScoreMultiplier: 1859
@@ -3812,7 +3813,7 @@ MonoBehaviour:
   maxSecondCount: 60
   maxSecondCoef: 1
   bombSpawner: {fileID: 1655071348}
-  bypassBombCount: 1
+  bypassBombCount: 0
   fixedBombCount: 2
   distanceFromPlayer: 100
   bombSpawnDelay: 0.2
@@ -4746,7 +4747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524231869074633782, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4524231869074633786, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
       propertyPath: m_Name

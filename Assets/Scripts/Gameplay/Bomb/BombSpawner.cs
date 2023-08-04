@@ -40,7 +40,6 @@ public class BombSpawner : MonoBehaviour
         GameObject GO;
         GO = Instantiate(bombPrefab, position, Quaternion.identity, transform);
         Bomb GOB = GO.GetComponent<Bomb>();
-
         int random = Random.Range(0, 9);
 
         if (random % 2 == 0)

@@ -7,14 +7,15 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-
-    [SerializeField] private CanvasGroup pausePanel;
+    [Header("Misc")]
+    [SerializeField] private float colorMultiplier = 5.0f;
 
     [Header("Menu scene")]
     [SerializeField] private string menuSceneName = "";
     [SerializeField] private TMP_Text timerText = null;
 
     [Header("Pause")]
+    [SerializeField] private CanvasGroup pausePanel;
     [SerializeField] private Button muteButton = null;
     [SerializeField] private TMP_Text muteButtonText = null;
 
@@ -44,8 +45,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text FirstPosName = null;
     [SerializeField] private TMP_Text SecondPosName = null;
     [SerializeField] private TMP_Text ThirdPosName = null;
-
     [SerializeField] private Image[] ScoreSlotBG;
+
 
     private void Awake()
     {
@@ -199,16 +200,26 @@ public class UIController : MonoBehaviour
 
     private void ToggleMute()
     {
-        muteButtonText.text = AudioManager.instance.IsMuted ? "Unmute" : "Mute";
         AudioManager.instance.ToggleMute();
+        muteButtonText.text = AudioManager.instance.IsMuted ? "Unmute" : "Mute";
     }
 
     private IEnumerator HighLightScoreSlot(int index)
     {
         Image BG = ScoreSlotBG[index];
+        BG.color = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.20f, 0.35f);
+        Color nextColor = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.15f, 0.25f);
+        float time = 0;
         while (true)
         {
-            BG.color = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.05f, 0.2f);
+            time += Time.deltaTime * colorMultiplier;
+            Color.Lerp(BG.color, nextColor, time);
+            if(time>1)
+            {
+                time--;
+                BG.color = nextColor;
+                nextColor = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.15f, 0.25f);
+            }
             yield return new WaitForSeconds(0.65f);
         }
     }
