@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BombSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
-    
-    //public static int BombsSpawned { private set; get; } = 0;
 
     private List<float> posibleAngles = new List<float>();
 
@@ -47,14 +46,13 @@ public class BombSpawner : MonoBehaviour
         if (random % 2 == 0)
         {
             GOB.SetBehavior(new BombJumper(GO));
+            GO.name = "Jumper " + Bomb.BombCount;
         }
         else
         {
             GOB.SetBehavior(new BombFollower(GO, playerTransform));
+            GO.name = "Chaser " + Bomb.BombCount;
         }
-
-        //BombsSpawned++;
-        //Debug.Log("Spawned a bomb! (" + BombsSpawned + ").");
     }
 
     private void GetAllPosiblePositions(int bombCount)
