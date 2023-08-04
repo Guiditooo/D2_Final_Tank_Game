@@ -5,6 +5,7 @@ public class Aimer : MonoBehaviour
 {
 
     [SerializeField] private float aimTime = 1f; //en segundos que quiero que tarde
+    [SerializeField] private float aimSpeed = 1f; //en segundos que quiero que tarde
 
     public static System.Action<Quaternion> OnAim;
 
@@ -44,12 +45,12 @@ public class Aimer : MonoBehaviour
 
         while (time < aimTime)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime*aimSpeed;
             transform.rotation = Quaternion.Lerp(actualRotation, targetRotation, time);
 
             yield return null;
         }
-        Debug.LogWarning("VOY A CREAR UNA BALA");
+        //Debug.LogWarning("VOY A CREAR UNA BALA");
         OnAim?.Invoke(targetRotation);
     }
 

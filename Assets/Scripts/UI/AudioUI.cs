@@ -18,6 +18,13 @@ public class AudioUI : MonoBehaviour
         musicSlider.onValueChanged.AddListener(SaveMusicSetting);
     }
 
+    private void OnDestroy()
+    {
+        masterSlider.onValueChanged.RemoveListener(SaveMasterSetting);
+        soundSlider.onValueChanged.RemoveListener(SaveSoundSetting);
+        musicSlider.onValueChanged.RemoveListener(SaveMusicSetting);
+    }
+
     public void SaveMasterSetting(float sliderValue)
     {
         AudioManager.instance.SetAudioMasterRef(sliderValue);

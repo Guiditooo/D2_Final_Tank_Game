@@ -31,9 +31,12 @@ public class GameManager : MonoBehaviour
     [Header("Player Reference")]
     [SerializeField] private Transform playerTransform = null;
 
+    [Header("UI Manager Reference")]
+    [SerializeField] private UIController uiController;
+
 
     public static System.Action<int> OnTimerChange;
-    public static System.Action<int> OnBombsChange;
+    //public static System.Action<int> OnBombsChange;
     public static System.Action OnGameOver;
     public static bool GameRunning { get; private set; } = true;
 
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     private int timerInt;
 
     private int bombCount;
+    public static int BombCount { get { return BombCount; } }
 
     private const string BOMB_KEY = "Ball Count";
     private const string TIME_KEY = "Time";
@@ -113,8 +117,10 @@ public class GameManager : MonoBehaviour
         {
             bombCount = PlayerPrefs.GetInt(BOMB_KEY);
         }
+        uiController.SetBombCounter(bombCount);
     }
 
+    public int GetInitialBombCount() => bombCount;
     private void GameOver()
     {
         GameRunning = false;

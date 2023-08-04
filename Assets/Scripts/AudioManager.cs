@@ -53,20 +53,21 @@ public class AudioManager : MonoBehaviour
 
     public void SetAudioMasterRef(float master)
     {
-        masterVolume = ConvertSliderValueToDecibel(master);
+        masterVolume = Mathf.Clamp(ConvertSliderValueToDecibel(master), minDecibels, maxDecibels);
         PlayerPrefs.SetFloat(AUDIO_MASTER_KEY, masterVolume);
+        audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
     }
     public void SetAudioSoundRef(float sound)
     {
-        float auxCalc = sound * ConvertDecibelToSliderValue(masterVolume)/100;
-        soundVolume = ConvertSliderValueToDecibel(auxCalc);
+        soundVolume = Mathf.Clamp(ConvertSliderValueToDecibel(sound), minDecibels, maxDecibels);
         PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, soundVolume);
+        audioMixer.SetFloat(AM_SOUND_KEY, soundVolume);
     }
     public void SetAudioMusicRef(float music)
     {
-        float auxCalc = music * ConvertDecibelToSliderValue(masterVolume)/100;
-        musicVolume = ConvertSliderValueToDecibel(auxCalc);
+        musicVolume = Mathf.Clamp(ConvertSliderValueToDecibel(music), minDecibels, maxDecibels);
         PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, musicVolume);
+        audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
     }
 
 

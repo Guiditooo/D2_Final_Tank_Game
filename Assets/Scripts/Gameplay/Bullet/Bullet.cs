@@ -8,16 +8,24 @@ public class Bullet : MonoBehaviour
 
     private Vector3 fixedForward = new Vector3(0, 90, 0);
 
+    private Rigidbody rb = null;
+
     public static int BulletCount { private set; get; } = 0;
     private void Awake()
     {
         BulletCount++;
-        transform.forward = transform.forward + fixedForward;
+        rb = GetComponent<Rigidbody>();
+        //transform.forward = transform.forward + fixedForward;
     }
 
-    private void Update()
+    private void Start()
     {
-        transform.Translate(transform.forward * Time.deltaTime * bulletSpeed);
+        rb.AddForce(transform.right * bulletSpeed, ForceMode.Impulse);
+    }
+
+    private void FixedUpdate()
+    {
+        //transform.Translate((transform.right) * Time.deltaTime * bulletSpeed);
     }
     private void OnCollisionEnter(Collision collision)
     {

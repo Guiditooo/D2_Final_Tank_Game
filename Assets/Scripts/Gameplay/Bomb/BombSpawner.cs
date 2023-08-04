@@ -5,8 +5,8 @@ using UnityEngine;
 public class BombSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
-
-    public static int BombsSpawned { private set; get; } = 0;
+    
+    //public static int BombsSpawned { private set; get; } = 0;
 
     private List<float> posibleAngles = new List<float>();
 
@@ -22,7 +22,8 @@ public class BombSpawner : MonoBehaviour
 
         for (int i = 0; i < bombCount; i++)
         {
-            SpawnBomb(CalculateCirclePosition(GetAnAngle() * i, distanceFromPlayer, playerTransform));
+            Vector3 circlePos = CalculateCirclePosition(GetAnAngle(), distanceFromPlayer, playerTransform);
+            SpawnBomb(circlePos, playerTransform);
             yield return new WaitForSeconds(spawnDelay);
         }
     }
@@ -35,10 +36,24 @@ public class BombSpawner : MonoBehaviour
         return new Vector3(x, playerTransform.position.y, z);
     }
 
-    private void SpawnBomb(Vector3 position)
+    private void SpawnBomb(Vector3 position, Transform playerTransform)
     {
-        Instantiate(bombPrefab, position, Quaternion.identity, transform);
-        BombsSpawned++;
+        GameObject GO;
+        GO = Instantiate(bombPrefab, position, Quaternion.identity, transform);
+        Bomb GOB = GO.GetComponent<Bomb>();
+
+        int random = Random.Range(0, 9);
+
+        if (random % 2 == 0)
+        {
+            GOB.SetBehavior(new BombJumper(GO));
+        }
+        else
+        {
+            GOB.SetBehavior(new BombFollower(GO, playerTransform));
+        }
+
+        //BombsSpawned++;
         //Debug.Log("Spawned a bomb! (" + BombsSpawned + ").");
     }
 

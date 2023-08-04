@@ -1037,6 +1037,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 515535634275223057, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
+      propertyPath: aimSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 515535634275223057, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
       propertyPath: rotationSpeed
       value: 0.001
       objectReference: {fileID: 0}
@@ -1699,6 +1703,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 240762963056826361, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
   m_PrefabInstance: {fileID: 456406375653412884}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &456406375653412886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 240762963056826366, guid: a168aedfe4c2b1843b367cdefa52cdfc, type: 3}
+  m_PrefabInstance: {fileID: 456406375653412884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &607780864342021365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2559,6 +2574,7 @@ MonoBehaviour:
   timerText: {fileID: 7684761511871800984}
   gameplaySceneName: Gameplay
   UIPanel: {fileID: 896041112342023626}
+  remainingBombs: {fileID: 456406375653412886}
   bombsPoints: {fileID: 851527312}
   timerPoints: {fileID: 78810407}
   scorePoints: {fileID: 1160494529}
@@ -2884,7 +2900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMultiplier: 1
-  bypassSavedTime: 1
+  bypassSavedTime: 0
   fixedInitialTime: 99999
   bombScoreMultiplier: 66660
   secondScoreMultiplier: 1859
@@ -2893,11 +2909,12 @@ MonoBehaviour:
   maxSecondCount: 60
   maxSecondCoef: 1
   bombSpawner: {fileID: 1655071348}
-  bypassBombCount: 1
+  bypassBombCount: 0
   fixedBombCount: 25
   distanceFromPlayer: 100
   bombSpawnDelay: 0.2
   playerTransform: {fileID: 1267908494}
+  uiController: {fileID: 2549261337315694314}
 --- !u!224 &3897586953414733791
 RectTransform:
   m_ObjectHideFlags: 0

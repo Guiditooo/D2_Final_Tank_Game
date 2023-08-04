@@ -12,10 +12,11 @@ public class UIController : MonoBehaviour
     [Header("Menu scene")]
     [SerializeField] private string menuSceneName = "";
     [SerializeField] private TMP_Text timerText = null;
-    
+
     [Header("Gameplay")]
     [SerializeField] private string gameplaySceneName = "";
     [SerializeField] private CanvasGroup UIPanel = null;
+    [SerializeField] private TMP_Text remainingBombs = null;
 
     [Header("Game Over Section")]
     [SerializeField] private TMP_Text bombsPoints = null;
@@ -30,12 +31,18 @@ public class UIController : MonoBehaviour
         PauseSystem.OnPauseStateChange += PausePanelController;
         GameManager.OnTimerChange += UpdateTimerText;
         GameManager.OnGameOver += LoadGameOver;
+        Bomb.OnGettingDestroyed += UpdateBombCounter;
     }
     private void OnDestroy()
     {
         PauseSystem.OnPauseStateChange -= PausePanelController;
         GameManager.OnTimerChange -= UpdateTimerText;
         GameManager.OnGameOver -= LoadGameOver;
+        Bomb.OnGettingDestroyed -= UpdateBombCounter;
+    }
+    private void Start()
+    {
+        remainingBombs.text = GameManager.BombCount.ToString();
     }
     private void PausePanelController(PauseStates state)
     {
@@ -88,12 +95,12 @@ public class UIController : MonoBehaviour
         float scorePerFrame = value / timeToShow;
         float shownValue = 0;
         float showingTime = 0;
-        while (showingTime<timeToShow)
+        while (showingTime < timeToShow)
         {
             showingTime += Time.deltaTime;
             shownValue += scorePerFrame;
             text.text = shownValue.ToString();
-        yield return null;
+            yield return null;
         }
         text.text = value.ToString();
     }
@@ -110,6 +117,16 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(gameplaySceneName);
+    }
+
+    private void UpdateBombCounter()
+    {
+        remainingBombs.text = Bomb.BombCount.ToString();
+    }
+
+    public void SetBombCounter(int bombCount)
+    {
+        remainingBombs.text = bombCount.ToString();
     }
 
 }

@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Bomb : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
-    protected abstract void Behaviour();
+    private IBombBehavior behavior;
+    public void SetBehavior(IBombBehavior newBehavior)
+    {
+        behavior = newBehavior;
+    }
     public static int BombCount { get; private set; } = 0;
     public static int BombsDestroyed { get; private set; } = 0;
+
+    public static System.Action OnGettingDestroyed;
 
     private void Awake()
     {
         BombCount++;
     }
-    private void Update()
+    private void FixedUpdate() //Ambos movimientos los hago con rigidbody
     {
-        Behaviour();
+        behavior?.ExecuteBehavior();
     }
     private void OnDestroy()
     {
@@ -23,8 +29,11 @@ public abstract class Bomb : MonoBehaviour
     }
     public void GetDestroyed()
     {
-        Destroy(this.gameObject);
         //Sonido de explosion
         //Particulas de explosion
+
+        OnGettingDestroyed?.Invoke();
+        Destroy(this.gameObject);
     }
+
 }
