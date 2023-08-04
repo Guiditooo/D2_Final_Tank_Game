@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     private float timer;
     private int timerInt;
 
-    private int bombCount;
-    public static int BombCount { get { return BombCount; } }
+    private static int bombCount ;
+    public static int BombCount { get { return bombCount; } }
 
     private const string BOMB_KEY = "Ball Count";
     private const string TIME_KEY = "Time";
@@ -90,6 +90,10 @@ public class GameManager : MonoBehaviour
                 {
                     OnTimerChange?.Invoke(timerInt);
                 }
+            }
+            if (Bomb.BombsDestroyed == BombCount)
+            {
+                GameOver();
             }
         }
     }
