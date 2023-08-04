@@ -29,7 +29,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text scorePoints = null;
     [SerializeField] private CanvasGroup gameOverPanel = null;
     [SerializeField] private CanvasGroup summaryPanel = null;
-    //[SerializeField] private CanvasGroup hiScorePanel = null;
+
+    [Header("HighScore Section")]
+    [SerializeField] private GT.HighScoreManager highsCoreManager = null;
+    [SerializeField] private TMP_Text FirstPosScore = null;
+    [SerializeField] private TMP_Text SecondPosScore = null;
+    [SerializeField] private TMP_Text ThirdPosScore = null;
+
+    [SerializeField] private TMP_Text FirstPosName = null;
+    [SerializeField] private TMP_Text SecondPosName = null;
+    [SerializeField] private TMP_Text ThirdPosName = null;
 
     private void Awake()
     {

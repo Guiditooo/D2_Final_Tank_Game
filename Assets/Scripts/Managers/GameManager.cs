@@ -141,4 +141,7 @@ public class GameManager : MonoBehaviour
     {
         secondScoreMultiplier = (int)(minSecondCoef + ((maxSecondCoef - minSecondCoef) / (maxSecondCount - minSecondCount)) * (initialTime - minSecondCount));
     }
+
+    
+
 }
