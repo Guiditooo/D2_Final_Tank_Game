@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
     [Header("Time Options")]
     [SerializeField] private float timerMultiplier = 1.0f;
     [SerializeField] private bool bypassSavedTime = false;
+    /// <summary>
+    /// Bypasses the saved time setted on main menu and uses the fixed inspector time.
+    /// </summary>
     [SerializeField] private int fixedInitialTime = 10;
 
     [Header("Score Options")]
@@ -14,9 +17,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int minSecondCoef = 10;
     [SerializeField] private int maxSecondCount = 60;
     [SerializeField] private int maxSecondCoef = 1;
+
+    [Header("Bomb Spawner Options")]
+    [SerializeField] private BombSpawner bombSpawner = null;
+    [SerializeField] private bool bypassBombCount = false;
     /// <summary>
-    /// Bypasses the saved time setted on main menu and uses the fixed inspector time.
+    /// Bypasses the saved bomb count setted on main menu and uses the fixed inspector bomb count.
     /// </summary>
+    [SerializeField] private int fixedBombCount = 5;
+    [SerializeField] private float distanceFromPlayer = 100.0f;
+    [SerializeField] private float bombSpawnDelay = 0.2f;
+
+    [Header("Player Reference")]
+    [SerializeField] private Transform playerTransform = null;
+
 
     public static System.Action<int> OnTimerChange;
     public static System.Action<int> OnBombsChange;
@@ -27,6 +41,10 @@ public class GameManager : MonoBehaviour
     private float timer;
     private int timerInt;
 
+    private int bombCount;
+
+    private const string BOMB_KEY = "Ball Count";
+    private const string TIME_KEY = "Time";
     public static int TotalScore { get; private set; } = 0;
     public static int BombScore { get; private set; } = 0;
     public static int TimeScore { get; private set; } = 0;
@@ -35,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetInitialTime();
+        SetBombCount();
         timerInt = (int)initialTime;
         timer = 0;
         GameRunning = true;
@@ -42,6 +61,11 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+    }
+
+    private void Start()
+    {
+        bombSpawner?.StartSpawningBombs(bombCount, distanceFromPlayer, playerTransform, bombSpawnDelay);
     }
 
     private void Update()
@@ -74,9 +98,21 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            initialTime = PlayerPrefs.GetInt("Time");
+            initialTime = PlayerPrefs.GetInt(TIME_KEY);
         }
         OnTimerChange?.Invoke((int)initialTime);
+    }
+
+    private void SetBombCount()
+    {
+        if (bypassBombCount)
+        {
+            bombCount = fixedBombCount;
+        }
+        else
+        {
+            bombCount = PlayerPrefs.GetInt(BOMB_KEY);
+        }
     }
 
     private void GameOver()
@@ -85,9 +121,9 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0;
         GetTimeMultiplier();
         BombScore = bombScoreMultiplier * Bomb.BombsDestroyed;
-        TimeScore = secondScoreMultiplier * (timerInt+1);
+        TimeScore = secondScoreMultiplier * (timerInt + 1);
         TotalScore = (BombScore + TimeScore);
-        
+
         OnGameOver?.Invoke();
     }
 

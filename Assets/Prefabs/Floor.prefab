@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 317314778878931738}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Limit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,5 +95,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10000, y: 200, z: 10000}
-  m_Center: {x: 0, y: -100, z: 0}
+  m_Size: {x: 10000, y: 181, z: 10000}
+  m_Center: {x: 0, y: -90, z: 0}

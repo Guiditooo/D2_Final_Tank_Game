@@ -1,58 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
 public class Aimer : MonoBehaviour
 {
-    [SerializeField] private float turretSpeed = 1.0f;
-    [SerializeField] private Transform target = null;
 
-    public Action OnTargetReach;
+    [SerializeField] private float aimTime = 1f; //en segundos que quiero que tarde
 
-    private IEnumerator MoveCannonCoroutine = null;
+    public static System.Action<Quaternion> OnAim;
 
-    private void Awake()
-    {
+    private Coroutine moveCoroutine = null;
 
-    }
-    private void OnDestroy()
-    {
-        
-    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (!PauseSystem.Paused)
         {
-            StartAiming(target.position);
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+
+                    if (moveCoroutine != null)
+                    {
+                        StopCoroutine(moveCoroutine);
+                    }
+                    moveCoroutine = StartCoroutine(MoveCannon(targetPosition));                    
+                }
+            }
+        }
     }
 
-    private void StartAiming(Vector3 targetPos)
+    private IEnumerator MoveCannon(Vector3 target)
     {
-        if (MoveCannonCoroutine == null)
-        {
-            MoveCannonCoroutine = MoveTheCannon(targetPos);
-            StartCoroutine(MoveCannonCoroutine);
-        }
-    }
+        Vector3 direction = target - transform.position;
+        Quaternion actualRotation = transform.rotation;
+        float rotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, rotationAngle, 0f);
 
-    IEnumerator MoveTheCannon(Vector3 targetPos)
-    {
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0f;
-        while (!LookingTheTarget(targetPos))
+        float time = 0;
+
+        while (time < aimTime)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-            transform.rotation = Quaternion.Slerp(Quaternion.LookRotation(transform.forward), targetRotation, turretSpeed * Time.deltaTime);
+            time += Time.deltaTime;
+            transform.rotation = Quaternion.Lerp(actualRotation, targetRotation, time);
+
             yield return null;
         }
-
-        //OnTargetReach();
-
-        Debug.Log("SHOOT!");
-
+        Debug.LogWarning("VOY A CREAR UNA BALA");
+        OnAim?.Invoke(targetRotation);
     }
 
     bool LookingTheTarget(Vector3 targetPos)
