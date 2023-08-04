@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class UIController : MonoBehaviour
     [Header("Menu scene")]
     [SerializeField] private string menuSceneName = "";
     [SerializeField] private TMP_Text timerText = null;
+
+    [Header("Pause")]
+    [SerializeField] private Button muteButton = null;
+    [SerializeField] private TMP_Text muteButtonText = null;
 
     [Header("Gameplay")]
     [SerializeField] private string gameplaySceneName = "";
@@ -32,6 +37,7 @@ public class UIController : MonoBehaviour
         GameManager.OnTimerChange += UpdateTimerText;
         GameManager.OnGameOver += LoadGameOver;
         Bomb.OnGettingDestroyed += UpdateBombCounter;
+        muteButton.onClick.AddListener(ToggleMute);
     }
     private void OnDestroy()
     {
@@ -39,6 +45,7 @@ public class UIController : MonoBehaviour
         GameManager.OnTimerChange -= UpdateTimerText;
         GameManager.OnGameOver -= LoadGameOver;
         Bomb.OnGettingDestroyed -= UpdateBombCounter;
+        muteButton.onClick.RemoveListener(ToggleMute);
     }
     private void Start()
     {
@@ -127,6 +134,12 @@ public class UIController : MonoBehaviour
     public void SetBombCounter(int bombCount)
     {
         remainingBombs.text = bombCount.ToString();
+    }
+
+    private void ToggleMute()
+    {
+        muteButtonText.text = AudioManager.instance.IsMuted ? "Unmute" : "Mute";
+        AudioManager.instance.ToggleMute();
     }
 
 }

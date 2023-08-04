@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    public bool IsMuted { private set; get; } = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -70,6 +72,20 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
     }
 
+    public void ToggleMute()
+    {
+        IsMuted = !IsMuted;
+
+        if (IsMuted)
+        {
+            masterVolume = minDecibels;
+        }
+        else
+        {
+            masterVolume = LookForPlayerPrefs(AUDIO_MASTER_KEY, masterVolume);
+        }
+        audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
+    }
 
     public float GetMasterVolume() => ConvertDecibelToSliderValue(masterVolume);
     public float GetSoundVolume() => ConvertDecibelToSliderValue(soundVolume);
