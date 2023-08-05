@@ -217,11 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &304496336 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1618541465, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-  m_PrefabInstance: {fileID: 1924784465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &608129627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,22 +1498,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1352465436}
     m_Modifications:
-    - target: {fileID: 214628440216521168, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 6d0b5b332378572458ae9f1f84c56dd4, type: 2}
-    - target: {fileID: 214628440216521170, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: brakeForce
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 214628440216521170, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: rotationSpeed
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 214628440216521170, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: antiRotationForce
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 391877011771497417, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1563,46 +1542,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 515535634275223057, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: aimTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 515535634275223057, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: aimSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 515535634275223057, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: rotationSpeed
-      value: 0.001
-      objectReference: {fileID: 0}
     - target: {fileID: 1025671435361206643, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
       propertyPath: m_Name
       value: Tanque
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750195600644778516, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750195600644778516, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750195600644778516, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8355943985986198301, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
       propertyPath: bulletFolder
       value: 
       objectReference: {fileID: 608129628}
-    - target: {fileID: 8355943985986198301, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 106340974124125618, guid: 5ab0b538f311de548a18925313b091d4, type: 3}
-    - target: {fileID: 8355943985986198301, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
-      propertyPath: bulletSpawnPoint
-      value: 
-      objectReference: {fileID: 304496336}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a67f70828f2b204d9ba888ebb3f2d83, type: 3}
 --- !u!1 &1939864254
@@ -4585,6 +4532,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5273798079555764721}
     m_Modifications:
+    - target: {fileID: 1444489529382329091, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4355492409529098942}
+    - target: {fileID: 1444489529382329091, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseControl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444489529382329091, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GT.PauseSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2912623952655194355, guid: 43af3fb4a64fe0d4aa09634dee1aefae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

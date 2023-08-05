@@ -22,6 +22,7 @@ namespace GT
         [SerializeField] private TMP_Text muteButtonText = null;
 
         [Header("Gameplay")]
+        [SerializeField] private BombSpawner bombSpawner = null;
         [SerializeField] private CanvasGroup UIPanel = null;
         [SerializeField] private TMP_Text remainingBombs = null;
 
@@ -52,21 +53,29 @@ namespace GT
 
         private void Awake()
         {
+            foreach (CanvasGroup canvasGroup in GetComponentsInChildren<CanvasGroup>())
+            {
+                canvasGroup.alpha = 0;
+                canvasGroup.blocksRaycasts = false;
+                canvasGroup.interactable = false;
+            }
+
             PauseSystem.OnPauseStateChange += PausePanelController;
             GameManager.OnTimerChange += UpdateTimerText;
             GameManager.OnGameOver += LoadGameOver;
-            Bomb.OnGettingDestroyed += UpdateBombCounter;
             muteButton.onClick.AddListener(ToggleMute);
+
         }
         private void OnDestroy()
         {
             PauseSystem.OnPauseStateChange -= PausePanelController;
             GameManager.OnTimerChange -= UpdateTimerText;
             GameManager.OnGameOver -= LoadGameOver;
-            Bomb.OnGettingDestroyed -= UpdateBombCounter;
             muteButton.onClick.RemoveListener(ToggleMute);
-            summaryNextButton.onClick.RemoveAllListeners();
-            nameInputNextButton.onClick.RemoveAllListeners();
+            nameInputNextButton?.onClick.AddListener(SaveHighScore);
+            nameInputNextButton?.onClick.AddListener(LoadHighScores);
+            summaryNextButton?.onClick.RemoveListener(LoadInputNamePanel);
+            summaryNextButton?.onClick.RemoveListener(LoadHighScores);
         }
         private void Start()
         {
@@ -192,7 +201,7 @@ namespace GT
         }
         private void UpdateBombCounter()
         {
-            remainingBombs.text = Bomb.BombCount.ToString();
+            remainingBombs.text = bombSpawner.ActualBombs.ToString();
         }
 
         public void SetBombCounter(int bombCount)

@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 214628440216521169}
   - component: {fileID: 214628440216521168}
   - component: {fileID: 214628440216521170}
-  - component: {fileID: 2642034865539793865}
   m_Layer: 7
   m_Name: Tanque
   m_TagString: Untagged
@@ -90,7 +89,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025671435361206643}
-  m_Material: {fileID: 13400000, guid: 3f217f21cc34a514cbb4eb8ce21b5f91, type: 2}
+  m_Material: {fileID: 13400000, guid: 6d0b5b332378572458ae9f1f84c56dd4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -108,22 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4615356d8993c848bd03f476aad9e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 25
+  rotationSpeed: 45
   movementSpeed: 25
-  brakeForce: 1
-  antiRotationForce: 1
---- !u!114 &2642034865539793865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025671435361206643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461962b6777352f49ab2c6af31cccbab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  brakeForce: 150
+  antiRotationForce: 1000
 --- !u!1 &2364500621624064217
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518505d4611637c44905a0add5fd966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimTime: 10
+  aimTime: 1
+  aimSpeed: 3
 --- !u!1 &2950445988152342132
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,9 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ebe5b0e2fb4a91d267d635922cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 0}
+  bulletSpawnPoint: {fileID: 1618541465}
   bulletFolder: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 106340974124125618, guid: 5ab0b538f311de548a18925313b091d4, type: 3}
 --- !u!1 &7844470330439481548
 GameObject:
   m_ObjectHideFlags: 0

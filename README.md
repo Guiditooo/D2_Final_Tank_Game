@@ -1,6 +1,6 @@
 # D2_Final_Tank_Game
- Final exam: a tank game. by Guido Tello.
- Image Campus Signature: Practica Profesional II: Desarrollo de videojuegos II.
+ - Final exam: a tank game. by Guido Tello.
+ - Image Campus Signature: Practica Profesional II: Desarrollo de videojuegos II.
 
 # Game Requirements
  -Main Menu-

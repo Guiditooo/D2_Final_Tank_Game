@@ -4,17 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
 namespace GT
 {
-
     public class MenuController : MonoBehaviour
     {
         [Header("Canvas Related")]
         [SerializeField] private CanvasGroup startingPanel;
         [SerializeField] private float fadeSpeed = 1.0f;
-
-
 
         private CanvasGroup actualPanel;
         private void Awake()
@@ -32,12 +28,6 @@ namespace GT
             actualPanel.blocksRaycasts = true;
             actualPanel.interactable = true;
 
-            /*
-            Debug.Log("1 Bomba x 10 Segundos: " + (66660 * 1 + 1859 * (60 - 10)));
-            Debug.Log("15 Bomba x 10 Segundos: " + (66660 * 15 + 1859 * (60 - 10)));
-            Debug.Log("1 Bomba x 60 Segundos: " + (66660 * 1 + 1859 * (60 - 60)));
-            Debug.Log("15 Bomba x 60 Segundos: " + (66660 * 15 + 1859 * (60 - 60)));
-            */
         }
 
         private void Start()

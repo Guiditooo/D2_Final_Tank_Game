@@ -11,30 +11,23 @@ namespace GT
         {
             behavior = newBehavior;
         }
-        public static int BombCount { get; private set; } = 0;
-        public static int BombsDestroyed { get; private set; } = 0;
+        //public static int BombCount { get; private set; } = 0;
 
-        public static System.Action OnGettingDestroyed;
+        public System.Action<Bomb> OnGettingDestroyed;
 
-        private void Awake()
-        {
-            BombCount++;
-        }
         private void FixedUpdate() //Ambos movimientos los hago con rigidbody
         {
             behavior?.ExecuteBehavior();
         }
         private void OnDestroy()
         {
-            BombCount--;
-            BombsDestroyed++;
         }
         public void GetDestroyed()
         {
             //Sonido de explosion
             //Particulas de explosion
 
-            OnGettingDestroyed?.Invoke();
+            OnGettingDestroyed?.Invoke(this);
             Destroy(this.gameObject);
         }
 

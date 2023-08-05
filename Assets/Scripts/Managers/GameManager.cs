@@ -63,6 +63,10 @@ namespace GT
             timerInt = (int)initialTime;
             timer = 0;
             GameRunning = true;
+            TotalScore = 0;
+            BombScore = 0;
+            TimeScore = 0;
+            SecondsCount = 0;
         }
 
         private void OnDestroy()
@@ -93,7 +97,7 @@ namespace GT
                         OnTimerChange?.Invoke(timerInt);
                     }
                 }
-                if (Bomb.BombsDestroyed == BombCount)
+                if ((bombSpawner.DestroyedBombs == BombCount) && bombSpawner.IsReady)
                 {
                     GameOver(true);
                 }
@@ -132,7 +136,7 @@ namespace GT
             GameRunning = false;
             //Time.timeScale = 0;
             GetTimeMultiplier();
-            BombScore = bombScoreMultiplier * Bomb.BombsDestroyed;
+            BombScore = bombScoreMultiplier * bombSpawner.DestroyedBombs;
             TimeScore = secondScoreMultiplier * (timerInt + 1);
             TotalScore = (BombScore + TimeScore);
 

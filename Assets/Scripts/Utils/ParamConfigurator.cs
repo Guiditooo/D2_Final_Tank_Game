@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace GT
 {
-
     public class ParamConfigurator : MonoBehaviour
     {
         private Dictionary<string, int> parameters = new Dictionary<string, int>();

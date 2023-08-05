@@ -10,6 +10,18 @@ namespace GT
 
         private List<float> posibleAngles = new List<float>();
 
+        private List<Bomb> bombList = new List<Bomb>();
+
+        public int BombsCreated { private set; get; } = 0;
+        public int ActualBombs { get { return bombList.Count; } }
+        public int DestroyedBombs { get { return BombsCreated - ActualBombs; } }
+        public bool IsReady { private set; get; } = false;
+
+        private void Awake()
+        {
+            IsReady = false;
+            BombsCreated = 0;
+        }
         public void StartSpawningBombs(int bombCount, float distanceFromPlayer, Transform playerTransform, float spawnDelay)
         {
             GetAllPosiblePositions(bombCount);
@@ -26,6 +38,7 @@ namespace GT
                 SpawnBomb(circlePos, playerTransform);
                 yield return new WaitForSeconds(spawnDelay);
             }
+            IsReady = true;
         }
 
         private Vector3 CalculateCirclePosition(float angle, float radius, Transform playerTransform)
@@ -46,13 +59,17 @@ namespace GT
             if (random % 2 == 0)
             {
                 GOB.SetBehavior(new BombJumper(GO));
-                GO.name = "Jumper " + Bomb.BombCount;
+                GO.name = "Jumper " + BombsCreated;
             }
             else
             {
                 GOB.SetBehavior(new BombFollower(GO, playerTransform));
-                GO.name = "Chaser " + Bomb.BombCount;
+                GO.name = "Chaser " + BombsCreated;
             }
+            GOB.OnGettingDestroyed += AugmentDestroyedBombs;
+            bombList.Add(GOB);
+            BombsCreated++;
+
         }
 
         private void GetAllPosiblePositions(int bombCount)
@@ -80,6 +97,12 @@ namespace GT
                 posibleAngles.Remove(0);
             }
             return angle;
+        }
+
+        private void AugmentDestroyedBombs(Bomb thisBomb)
+        {
+            bombList.Remove(thisBomb);
+            thisBomb.OnGettingDestroyed -= AugmentDestroyedBombs;
         }
 
     }
