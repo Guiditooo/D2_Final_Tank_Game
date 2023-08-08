@@ -6,7 +6,8 @@ namespace GT
 {
     public class BombSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject bombPrefab;
+        [SerializeField] private GameObject bombPrefab = null;
+        [SerializeField] private BombConfiguration bombConfig = null;
 
         private List<float> posibleAngles = new List<float>();
 
@@ -58,12 +59,12 @@ namespace GT
 
             if (random % 2 == 0)
             {
-                GOB.SetBehavior(new BombJumper(GO));
+                GOB.SetBehavior(new BombJumper(GO, bombConfig));
                 GO.name = "Jumper " + BombsCreated;
             }
             else
             {
-                GOB.SetBehavior(new BombFollower(GO, playerTransform));
+                GOB.SetBehavior(new BombFollower(GO, playerTransform, bombConfig));
                 GO.name = "Chaser " + BombsCreated;
             }
             GOB.OnGettingDestroyed += AugmentDestroyedBombs;

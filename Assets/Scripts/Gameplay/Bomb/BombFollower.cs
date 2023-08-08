@@ -8,12 +8,15 @@ namespace GT
     {
         private Rigidbody rb;
         private Transform playerTransform;
-        private float chaseSpeed = 10f;
+        private BombConfiguration config = null;
+        private float chaseSpeed = 0f;
 
-        public BombFollower(GameObject bomb, Transform player)
+        public BombFollower(GameObject bomb, Transform player, BombConfiguration bombConfig)
         {
             rb = bomb.GetComponent<Rigidbody>();
             playerTransform = player;
+            config = bombConfig;
+            chaseSpeed = config.chaseSpeed;
         }
         public void ExecuteBehavior()
         {

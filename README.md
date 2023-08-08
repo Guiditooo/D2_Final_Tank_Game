@@ -26,6 +26,7 @@
    * PAUSE Resume Button: It is the opposite of the pause button. If you hit it, the game will continue. DONE
    * PAUSE Main Menu Button: It will bring you to the Main Menu, making you loose your progress. DONE
    * PAUSE Audio Mute Toggle: It will Mute or Unmute all the sounds on the game. DONE
+   * Use Scriptable Objects to control the chaser speed. DONE
 
  -Game Over-
    * Summary: It will show your score. I calculate the total score on this screen. DONE

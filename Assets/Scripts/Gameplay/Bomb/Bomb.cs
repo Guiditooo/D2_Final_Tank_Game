@@ -11,16 +11,12 @@ namespace GT
         {
             behavior = newBehavior;
         }
-        //public static int BombCount { get; private set; } = 0;
 
         public System.Action<Bomb> OnGettingDestroyed;
 
         private void FixedUpdate() //Ambos movimientos los hago con rigidbody
         {
             behavior?.ExecuteBehavior();
-        }
-        private void OnDestroy()
-        {
         }
         public void GetDestroyed()
         {
