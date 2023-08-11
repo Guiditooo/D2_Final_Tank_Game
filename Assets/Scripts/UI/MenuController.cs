@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace GT
 {
@@ -12,8 +13,10 @@ namespace GT
         [SerializeField] private CanvasGroup startingPanel;
         [SerializeField] private float fadeSpeed = 1.0f;
 
-        private CanvasGroup actualPanel;
+        [SerializeField] private TextAsset creditsFile;
+        [SerializeField] private TMP_Text creditsText;
 
+        private CanvasGroup actualPanel;
 
         private void Awake()
         {
@@ -34,6 +37,7 @@ namespace GT
         private void Start()
         {
             Time.timeScale = 1;
+            LoadCredits();
         }
 
         public void StartPanel(CanvasGroup newPanel)
@@ -76,10 +80,17 @@ namespace GT
         {
             Application.Quit();
         }
-
         public void LoadGame()
         {
             SceneManager.LoadScene("Gameplay");
+        }
+
+        private void LoadCredits()
+        {
+            if (creditsText != null && creditsFile != null)
+            {
+                creditsText.text = creditsFile.text;
+            }
         }
 
     }

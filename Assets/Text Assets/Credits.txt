@@ -1,0 +1,4 @@
+Game Name: ~ Tank Game ~
+
+- Developer: Tello, Guido
+- Tank Artist: Monferini, Nina
