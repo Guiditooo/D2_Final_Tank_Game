@@ -12,7 +12,7 @@ namespace GT
 
         public BombJumper(GameObject bomb, BombConfiguration bombConfig)
         {
-            rb = bomb.GetComponent<Rigidbody>();
+            rb = bomb.GetComponentInChildren<Rigidbody>();
             config = bombConfig;
             bounceForce = config.bounceForce;
         }
