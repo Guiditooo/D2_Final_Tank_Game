@@ -489,6 +489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6647044824365190760, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d2891aaabb0e245a763c0cd2dac51a, type: 3}
     - target: {fileID: 7531533435631336804, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
       propertyPath: m_text
       value: X
@@ -4124,6 +4128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6647044824365190760, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d2891aaabb0e245a763c0cd2dac51a, type: 3}
     - target: {fileID: 7531533435631336804, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
       propertyPath: m_text
       value: X
@@ -4331,6 +4339,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6647044824365190760, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d2891aaabb0e245a763c0cd2dac51a, type: 3}
     - target: {fileID: 7531533435631336804, guid: 45bf74727a7fdcd4fadf15157ddb12df, type: 3}
       propertyPath: m_text
       value: X
