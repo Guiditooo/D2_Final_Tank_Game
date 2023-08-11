@@ -2556,9 +2556,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMultiplier: 1
-  bypassSavedTime: 1
+  bypassSavedTime: 0
   fixedInitialTime: 9999
-  bypassBombCount: 1
+  bypassBombCount: 0
   fixedBombCount: 999
   playerTransform: {fileID: 1267908494}
   uiController: {fileID: 2549261337315694314}

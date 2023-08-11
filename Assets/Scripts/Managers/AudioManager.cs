@@ -81,7 +81,7 @@ namespace GT
         { //Ahora solo lo hago cuando cierro el panel de opciones
             PlayerPrefs.SetFloat(AUDIO_MASTER_KEY, masterVolume);
             PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, soundVolume);
-            PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, musicVolume);
+            PlayerPrefs.SetFloat(AUDIO_MUSIC_KEY, musicVolume);
         }
 
         public void ToggleMute()
