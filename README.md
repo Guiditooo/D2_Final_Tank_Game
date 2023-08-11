@@ -40,9 +40,10 @@
 * [4] - The UI MUST be responsive. DONE
 * [5] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
 * [6] - The audio would be saved using PlayerPrefs. DONE
-* [7] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI.
-* [8] - There need to exist a pause Tab in Gameplay. DONE
+* [7] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI. 
+* [8] - There MUST exist a pause Tab in Gameplay. DONE
 * [9] - The project MUST be clean. Remove any deprecated or useless assets. DONE
+* [10] - The project has 3 scenes: Menu, Gameplay & GameOver DONE
 
 # Medium Requirements - From 5 to 7
 * [1] - Implement Particles somewhere.
