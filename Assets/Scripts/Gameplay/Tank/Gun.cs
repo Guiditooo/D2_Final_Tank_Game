@@ -10,10 +10,13 @@ namespace GT
         [SerializeField] private Transform bulletFolder = null;
         [SerializeField] private GameObject bulletPrefab = null;
 
-        private List<Bullet> bulletList = new List<Bullet>();
+        private AudioSource audioSource = null;
+
+        //private List<Bullet> bulletList = new List<Bullet>();
 
         private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
             Aimer.OnAim += Shoot;
         }
         private void OnDestroy()
@@ -23,7 +26,8 @@ namespace GT
 
         private void Shoot(Quaternion rotation)
         {
-            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation, bulletFolder);
+            Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation, bulletFolder);
+            audioSource.Play();
         }
 
     }
