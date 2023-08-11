@@ -8,16 +8,23 @@ namespace GT
         [SerializeField] private Slider masterSlider;
         [SerializeField] private Slider soundSlider;
         [SerializeField] private Slider musicSlider;
+        [SerializeField] private Button exitButton;
+
+        private AudioManager audioManager = null;
 
         private void Start()
         {
-            masterSlider.value = AudioManager.instance.GetMasterVolume();
-            soundSlider.value = AudioManager.instance.GetSoundVolume();
-            musicSlider.value = AudioManager.instance.GetMusicVolume();
+            audioManager = AudioManager.instance;
+
+            masterSlider.value = audioManager.GetMasterVolume();
+            soundSlider.value = audioManager.GetSoundVolume();
+            musicSlider.value = audioManager.GetMusicVolume();
 
             masterSlider.onValueChanged.AddListener(SaveMasterSetting);
             soundSlider.onValueChanged.AddListener(SaveSoundSetting);
             musicSlider.onValueChanged.AddListener(SaveMusicSetting);
+
+            exitButton.onClick.AddListener(SaveAudioSettings);
         }
 
         private void OnDestroy()
@@ -25,19 +32,25 @@ namespace GT
             masterSlider.onValueChanged.RemoveListener(SaveMasterSetting);
             soundSlider.onValueChanged.RemoveListener(SaveSoundSetting);
             musicSlider.onValueChanged.RemoveListener(SaveMusicSetting);
+
+            exitButton.onClick.RemoveListener(SaveAudioSettings);
         }
 
         public void SaveMasterSetting(float sliderValue)
         {
-            AudioManager.instance.SetAudioMasterRef(sliderValue);
+            audioManager.SetAudioMasterRef(sliderValue);
         }
         public void SaveSoundSetting(float sliderValue)
         {
-            AudioManager.instance.SetAudioSoundRef(sliderValue);
+            audioManager.SetAudioSoundRef(sliderValue);
         }
         public void SaveMusicSetting(float sliderValue)
         {
-            AudioManager.instance.SetAudioMusicRef(sliderValue);
+            audioManager.SetAudioMusicRef(sliderValue);
+        }
+        public void SaveAudioSettings()
+        {
+            audioManager.SetAudioReferences(masterSlider.value, soundSlider.value, musicSlider.value);
         }
     }
 }

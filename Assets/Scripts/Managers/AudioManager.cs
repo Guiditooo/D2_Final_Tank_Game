@@ -24,6 +24,8 @@ namespace GT
         private float soundVolume = -30;
         private float musicVolume = -30;
 
+        private float valueBeforeMutting = 0.0f;
+
         public static AudioManager instance;
 
         public bool IsMuted { private set; get; } = false;
@@ -45,31 +47,41 @@ namespace GT
         private void InitializeAudioSettings()
         {
             masterVolume = LookForPlayerPrefs(AUDIO_MASTER_KEY, masterVolume);
+            if (masterVolume == minDecibels)
+                IsMuted = true;
             soundVolume = LookForPlayerPrefs(AUDIO_SOUND_KEY, soundVolume);
             musicVolume = LookForPlayerPrefs(AUDIO_MUSIC_KEY, musicVolume);
+        }
 
-            audioMixer.SetFloat(AM_MASTER_KEY, ConvertSliderValueToDecibel(masterVolume));
-            audioMixer.SetFloat(AM_SOUND_KEY, ConvertSliderValueToDecibel(soundVolume));
-            audioMixer.SetFloat(AM_MUSIC_KEY, ConvertSliderValueToDecibel(musicVolume));
+        private void Start()
+        {
+            audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
+            audioMixer.SetFloat(AM_SOUND_KEY, soundVolume);
+            audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
         }
 
         public void SetAudioMasterRef(float master)
         {
             masterVolume = Mathf.Clamp(ConvertSliderValueToDecibel(master), minDecibels, maxDecibels);
-            PlayerPrefs.SetFloat(AUDIO_MASTER_KEY, masterVolume);
             audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
+            IsMuted = masterVolume == minDecibels;
         }
         public void SetAudioSoundRef(float sound)
         {
             soundVolume = Mathf.Clamp(ConvertSliderValueToDecibel(sound), minDecibels, maxDecibels);
-            PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, soundVolume);
             audioMixer.SetFloat(AM_SOUND_KEY, soundVolume);
         }
         public void SetAudioMusicRef(float music)
         {
             musicVolume = Mathf.Clamp(ConvertSliderValueToDecibel(music), minDecibels, maxDecibels);
-            PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, musicVolume);
             audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
+        }
+
+        public void SetAudioReferences(float master, float sound, float music)
+        { //Ahora solo lo hago cuando cierro el panel de opciones
+            PlayerPrefs.SetFloat(AUDIO_MASTER_KEY, masterVolume);
+            PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, soundVolume);
+            PlayerPrefs.SetFloat(AUDIO_SOUND_KEY, musicVolume);
         }
 
         public void ToggleMute()
@@ -78,11 +90,16 @@ namespace GT
 
             if (IsMuted)
             {
+                valueBeforeMutting = masterVolume;
                 masterVolume = minDecibels;
             }
             else
             {
-                masterVolume = LookForPlayerPrefs(AUDIO_MASTER_KEY, masterVolume);
+                masterVolume = valueBeforeMutting;
+                if(masterVolume==minDecibels)
+                {
+                    masterVolume = maxDecibels;
+                }
             }
             audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
         }
