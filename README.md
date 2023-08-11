@@ -38,9 +38,9 @@
 * [2] - Every piece of code MUST be contained by a custom namespace. DONE
 * [3] - The Main Menu shows the devs and artists names. This text must be a TextAsset. DONE
 * [4] - The UI MUST be responsive. DONE
-* [5] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
+* [5] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds. DONE
 * [6] - The audio would be saved using PlayerPrefs. DONE
-* [7] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI. 
+* [7] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI. DONE
 * [8] - There MUST exist a pause Tab in Gameplay. DONE
 * [9] - The project MUST be clean. Remove any deprecated or useless assets. DONE
 * [10] - The project has 3 scenes: Menu, Gameplay & GameOver DONE
