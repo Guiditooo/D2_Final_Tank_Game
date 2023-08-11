@@ -1,0 +1,19 @@
+Es mejor usar properties o funciones?
+
+Como es mejor encarar? (Esto se me divide en bastantes cosas)
+	* Tener un script que maneje lo referido a si mismo tanto de UI, como de funcionalidad.
+	* Tener un script que maneje todo lo relacionado a UI por un lado, y otro con cada funcionalidad que se vaya a tener, ej: opciones y config de juego (dificultad, recursos iniciales, etc.)
+	* Tener un script de UI grande y un game manager grande.
+	* (Definitivamente no, pero me puedo equivocar) Un script solo que englobe tanto toda la ui como todas las funcionalidades.
+	* Otra forma que no estoy contemplando.
+
+Esto me lleva a preguntar otras cosas:
+
+Si tengo varios scripts, como es mejor accederlos? 
+	* Con una variable estatica (sin usar el DontDestroyOnLoad() porque no me refiero a un Singleton) a la cual accedo de manera privada con los diferentes scripts: 
+		private GameManager gameManager = GameManager.Instance;
+	* Por medio de [SerializeField] private GameManager gameManager.
+
+Por otra parte, hay algo que me llama mucho la atencion. Para que el uso de namespace? Esto me lleva a pensar que la forma que estoy usando no es la mejor. Cuando deberia no utilizarlo, de modo que sea efectivo el uso del mismo? 
+
+Son bastantes dudas, pero si no me las saco, no termino de entender y me gustaria hacerlo.
