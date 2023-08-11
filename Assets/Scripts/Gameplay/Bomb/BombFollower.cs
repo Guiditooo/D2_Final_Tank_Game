@@ -13,7 +13,7 @@ namespace GT
 
         public BombFollower(GameObject bomb, Transform player, BombConfiguration bombConfig)
         {
-            rb = bomb.GetComponent<Rigidbody>();
+            rb = bomb.GetComponentInChildren<Rigidbody>();
             playerTransform = player;
             config = bombConfig;
             chaseSpeed = config.chaseSpeed;
