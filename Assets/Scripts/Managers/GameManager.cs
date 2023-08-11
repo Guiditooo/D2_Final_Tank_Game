@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GT
 {
@@ -6,76 +7,52 @@ namespace GT
     {
         [Header("Time Options")]
         [SerializeField] private float timerMultiplier = 1.0f;
-        [SerializeField] private bool bypassSavedTime = false;
-        /// <summary>
-        /// Bypasses the saved time setted on main menu and uses the fixed inspector time.
-        /// </summary>
+        [SerializeField] private bool bypassSavedTime = false;//Bypasses the saved time setted on main menu and uses the fixed inspector time.
         [SerializeField] private int fixedInitialTime = 10;
 
-        [Header("Score Options")]
-        [SerializeField] private int bombScoreMultiplier = 66660;
-        [SerializeField] private int secondScoreMultiplier = 1859;
-        [SerializeField] private int minSecondCount = 10;
-        [SerializeField] private int minSecondCoef = 10;
-        [SerializeField] private int maxSecondCount = 60;
-        [SerializeField] private int maxSecondCoef = 1;
-
         [Header("Bomb Spawner Options")]
-        [SerializeField] private BombSpawner bombSpawner = null;
-        [SerializeField] private bool bypassBombCount = false;
-        /// <summary>
-        /// Bypasses the saved bomb count setted on main menu and uses the fixed inspector bomb count.
-        /// </summary>
+        [SerializeField] private bool bypassBombCount = false;//Bypasses the saved bomb count setted on main menu and uses the fixed inspector bomb count.
         [SerializeField] private int fixedBombCount = 5;
-        [SerializeField] private float distanceFromPlayer = 100.0f;
-        [SerializeField] private float bombSpawnDelay = 0.2f;
 
         [Header("Player Reference")]
         [SerializeField] private Transform playerTransform = null;
 
         [Header("UI Manager Reference")]
-        [SerializeField] private UIController uiController;
+        [SerializeField] private UIController uiController = null;
 
-
-        public static System.Action<int> OnTimerChange;
-        //public static System.Action<int> OnBombsChange;
-        public static System.Action<bool> OnGameOver;
-        public static bool GameRunning { get; private set; } = true;
+        [Header("Game Over Scene Reference")]
+        [SerializeField] private string gameOverSceneName = "";
 
         private float initialTime;
         private float timer;
         private int timerInt;
+        private int bombCount;
+        private bool GameRunning = true;
 
-        private static int bombCount;
-        public static int BombCount { get { return bombCount; } }
-
-        private const string BOMB_KEY = "Ball Count";
-        private const string TIME_KEY = "Time";
-        public static int TotalScore { get; private set; } = 0;
-        public static int BombScore { get; private set; } = 0;
-        public static int TimeScore { get; private set; } = 0;
-        public static int SecondsCount { get; private set; } = 0;
+        private DataManager dataManager = null;
+        private BombSpawner bombSpawner = null;
 
         private void Awake()
         {
+            dataManager = DataManager.Instance;
+            bombSpawner = BombSpawner.Instance;
+
             SetInitialTime();
             SetBombCount();
             timerInt = (int)initialTime;
             timer = 0;
             GameRunning = true;
-            TotalScore = 0;
-            BombScore = 0;
-            TimeScore = 0;
-            SecondsCount = 0;
+            bombSpawner.OnAllBombsDestroyed += GameOver;
         }
-
         private void OnDestroy()
         {
+            bombSpawner.OnAllBombsDestroyed -= GameOver;
         }
 
         private void Start()
         {
-            bombSpawner?.StartSpawningBombs(bombCount, distanceFromPlayer, playerTransform, bombSpawnDelay);
+            bombSpawner?.StartSpawningBombs(bombCount, dataManager.GetBombDistanceFromPlayer(), playerTransform, dataManager.GetBombSpawnDelay());
+            uiController.SetBombCounter(bombCount);
         }
 
         private void Update()
@@ -87,19 +64,14 @@ namespace GT
                 {
                     timer--;
                     timerInt--;
-                    SecondsCount++;
                     if (timerInt < 0)
                     {
-                        GameOver(false);
+                        GameOver();
                     }
                     else
                     {
-                        OnTimerChange?.Invoke(timerInt);
+                        uiController.UpdateTimerText(timerInt);
                     }
-                }
-                if ((bombSpawner.DestroyedBombs == BombCount) && bombSpawner.IsReady)
-                {
-                    GameOver(true);
                 }
             }
         }
@@ -112,9 +84,9 @@ namespace GT
             }
             else
             {
-                initialTime = PlayerPrefs.GetInt(TIME_KEY);
+                initialTime = dataManager.GetInitialTime();
             }
-            OnTimerChange?.Invoke((int)initialTime);
+            uiController.UpdateTimerText(timerInt);
         }
 
         private void SetBombCount()
@@ -125,27 +97,21 @@ namespace GT
             }
             else
             {
-                bombCount = PlayerPrefs.GetInt(BOMB_KEY);
+                bombCount = dataManager.GetInitialBombCount();
             }
             uiController.SetBombCounter(bombCount);
         }
 
-        public int GetInitialBombCount() => bombCount;
-        private void GameOver(bool hasWon)
+        private void SaveAllParameters()
         {
-            GameRunning = false;
-            //Time.timeScale = 0;
-            GetTimeMultiplier();
-            BombScore = bombScoreMultiplier * bombSpawner.DestroyedBombs;
-            TimeScore = secondScoreMultiplier * (timerInt + 1);
-            TotalScore = (BombScore + TimeScore);
-
-            OnGameOver?.Invoke(hasWon);
+            dataManager.SavePlayedGameStats(bombSpawner.DestroyedBombs, timerInt);
         }
 
-        private void GetTimeMultiplier()
+        private void GameOver()
         {
-            secondScoreMultiplier = (int)(minSecondCoef + ((maxSecondCoef - minSecondCoef) / (maxSecondCount - minSecondCount)) * (initialTime - minSecondCount));
+            GameRunning = false;
+            SaveAllParameters();
+            SceneManager.LoadScene(gameOverSceneName);
         }
 
     }

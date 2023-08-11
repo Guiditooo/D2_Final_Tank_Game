@@ -13,6 +13,8 @@ namespace GT
         [SerializeField] private float fadeSpeed = 1.0f;
 
         private CanvasGroup actualPanel;
+
+
         private void Awake()
         {
             actualPanel = startingPanel;
@@ -27,7 +29,6 @@ namespace GT
             actualPanel.alpha = 1;
             actualPanel.blocksRaycasts = true;
             actualPanel.interactable = true;
-
         }
 
         private void Start()

@@ -11,26 +11,28 @@ namespace GT
 
         public static Action<PauseStates> OnPauseStateChange;
         public static bool Paused { get; private set; }
+
+        private static bool isGameRunning = true;
+
         private void Awake()
         {
             InputManager.OnPausePress += PauseControl;
-            GameManager.OnGameOver += RestartGame;
         }
         private void OnDestroy()
         {
             InputManager.OnPausePress -= PauseControl;
-            GameManager.OnGameOver -= RestartGame;
         }
 
         private void Start()
         {
+            isGameRunning = true;
             Paused = !startPaused;
             PauseControl();
         }
 
         public static void PauseControl()
         {
-            if (GameManager.GameRunning)
+            if (isGameRunning)
             {
                 Paused = !Paused;
                 Time.timeScale = Paused ? 0 : 1;
@@ -38,11 +40,6 @@ namespace GT
                 Debug.Log("Envio estado de pausa: " + Paused);
                 OnPauseStateChange?.Invoke(actualState);
             }
-        }
-
-        private void RestartGame(bool a)
-        {
-            Paused = true;
         }
 
     }

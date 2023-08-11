@@ -5,7 +5,7 @@ using System.IO;
 
 namespace GT
 {
-    public class HighScoreManager : MonoBehaviour
+    public class HighScoreManager
     {
         private const string HIGH_SCORE_FILE_NAME = "HighScore.top";
 
@@ -13,22 +13,14 @@ namespace GT
 
         private const int HIGH_SCORE_COUNT = 3;
 
-        private HighScore[] highScores = new HighScore[HIGH_SCORE_COUNT];
-
-        string path = "";
-
-        private void Awake()
-        {
-            path = Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME);
-        }
-        public HighScore[] GetHighScores() => highScores;
+        private DataManager dataManager = DataManager.Instance;
 
         public bool CompareWithHighScores(int score)
         {
             RetrieveHighScores();
             for (int i = 0; i < HIGH_SCORE_COUNT; i++)
             {
-                if (score > highScores[i].score)
+                if (score > dataManager.GetHighScores()[i].score)
                 {
                     return true;
                 }
@@ -40,16 +32,16 @@ namespace GT
         {
             int plancingIndex = -1;
             RetrieveHighScores();
-            for (int i = 0; i < highScores.Length; i++)
+            for (int i = 0; i < dataManager.GetHighScores().Length; i++)
             {
-                if (hs.score > highScores[i].score)
+                if (hs.score > dataManager.GetHighScores()[i].score)
                 {
-                    for (int j = highScores.Length - 1; j > i; j--)
+                    for (int j = dataManager.GetHighScores().Length - 1; j > i; j--)
                     {
-                        highScores[j] = highScores[j - 1];
+                        dataManager.GetHighScores()[j] = dataManager.GetHighScores()[j - 1];
                     }
 
-                    highScores[i] = hs;
+                    dataManager.GetHighScores()[i] = hs;
                     plancingIndex = i;
                     break;
                 }
@@ -61,13 +53,14 @@ namespace GT
         private void RetrieveHighScores()
         {
             string content = ReadFile();
+
             List<string> hsTexts = new List<string>();
 
             int itCount = 0;
 
             foreach (string hsText in content.Split(HS_SEPARATOR))
             {
-                highScores[itCount] = HighScore.ToStruct(hsText);
+                dataManager.GetHighScores()[itCount] = HighScore.ToStruct(hsText);
                 itCount++;
             }
 
@@ -78,7 +71,7 @@ namespace GT
             string chain = "";
             for (int i = 0; i < HIGH_SCORE_COUNT; i++)
             {
-                chain += highScores[i].ToString();
+                chain += dataManager.GetHighScores()[i].ToString();
 
                 if (i < HIGH_SCORE_COUNT - 1)
                 {
@@ -104,11 +97,10 @@ namespace GT
                 {
                     chain += HS_SEPARATOR;
                 }
-
             }
             try
             {
-                File.WriteAllText(path, chain);
+                File.WriteAllText(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME), chain);
             }
             catch (System.Exception ex)
             {
@@ -120,7 +112,7 @@ namespace GT
         {
             try
             {
-                File.WriteAllText(path, string.Empty);
+                File.WriteAllText(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME), string.Empty);
             }
             catch (System.Exception ex)
             {
@@ -133,13 +125,13 @@ namespace GT
             string content = "";
             try
             {
-                if (!File.Exists(path))
+                if (!File.Exists(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME)))
                 {
                     Debug.LogWarning("The file does not exist. A new one will be created.");
                     CreateFile();
                 }
 
-                content = File.ReadAllText(path);
+                content = File.ReadAllText(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME));
 
                 if (content == "")
                 {
@@ -153,18 +145,17 @@ namespace GT
 
             return content;
         }
-
         private void WriteFile(string data)
         {
             try
             {
-                if (!File.Exists(path))
+                if (!File.Exists(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME)))
                 {
                     Debug.LogWarning("The file does not exist. A new one will be created.");
                     CreateFile();
                 }
 
-                File.WriteAllText(path, data);
+                File.WriteAllText(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME), data);
             }
             catch (System.Exception ex)
             {

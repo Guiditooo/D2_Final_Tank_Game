@@ -18,10 +18,26 @@ namespace GT
         public int DestroyedBombs { get { return BombsCreated - ActualBombs; } }
         public bool IsReady { private set; get; } = false;
 
+        public System.Action<int> OnBombDestroy;
+        public System.Action OnAllBombsDestroyed;
+
+        public static BombSpawner Instance = null;
+
+        private DataManager dataManager = null;
+
         private void Awake()
         {
+            Instance = this;
             IsReady = false;
             BombsCreated = 0;
+            dataManager = DataManager.Instance;
+        }
+        private void OnDestroy()
+        {
+            foreach (Bomb bomb in bombList) //Esto porque puede ser que no todas las bombas sean destruidas
+            {
+                bomb.OnGettingDestroyed -= AugmentDestroyedBombs;
+            }
         }
         public void StartSpawningBombs(int bombCount, float distanceFromPlayer, Transform playerTransform, float spawnDelay)
         {
@@ -103,7 +119,12 @@ namespace GT
         private void AugmentDestroyedBombs(Bomb thisBomb)
         {
             bombList.Remove(thisBomb);
+            OnBombDestroy?.Invoke(bombList.Count);
             thisBomb.OnGettingDestroyed -= AugmentDestroyedBombs;
+            if(bombList.Count==0)
+            {
+                OnAllBombsDestroyed?.Invoke();
+            }
         }
 
     }

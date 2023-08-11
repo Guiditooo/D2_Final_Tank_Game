@@ -365,50 +365,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10200, y: 2000, z: 100}
   m_Center: {x: 0, y: 1000, z: 50}
---- !u!1 &853898398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 853898399}
-  - component: {fileID: 853898400}
-  m_Layer: 0
-  m_Name: High Score Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &853898399
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853898398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5373818212242617712}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &853898400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853898398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9d761590639a94f81f6af5de4f3312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &879902533
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,51 +770,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 100, y: 2000, z: 10200}
   m_Center: {x: 50, y: 1000, z: 0}
---- !u!1 &1290828331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1290828332}
-  - component: {fileID: 1290828333}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1290828332
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290828331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5373818212242617712}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1290828333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290828331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17148aa49a902e141b961b995dd2ed74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
 --- !u!1 &1352465435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,8 +1428,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357197980091297122}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &965728699443571953
@@ -2060,7 +1971,6 @@ MonoBehaviour:
   pausePanel: {fileID: 7255688212180379669}
   muteButton: {fileID: 1626629035}
   muteButtonText: {fileID: 285029260}
-  bombSpawner: {fileID: 0}
   UIPanel: {fileID: 896041112342023626}
   remainingBombs: {fileID: 456406375653412886}
 --- !u!1 &2708436080572010345
@@ -2140,7 +2050,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5373818212242617712}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &3202447509652319368
 CanvasRenderer:
@@ -2348,20 +2258,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerMultiplier: 1
   bypassSavedTime: 0
-  fixedInitialTime: 99999
-  bombScoreMultiplier: 66660
-  secondScoreMultiplier: 1859
-  minSecondCount: 10
-  minSecondCoef: 10
-  maxSecondCount: 60
-  maxSecondCoef: 1
-  bombSpawner: {fileID: 1655071348}
+  fixedInitialTime: 1
   bypassBombCount: 0
-  fixedBombCount: 2
-  distanceFromPlayer: 100
-  bombSpawnDelay: 0.2
+  fixedBombCount: 999
   playerTransform: {fileID: 1267908494}
   uiController: {fileID: 2549261337315694314}
+  gameOverSceneName: GameOver
 --- !u!114 &4022962883081500171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2952,7 +2854,7 @@ RectTransform:
   - {fileID: 7255688212180379670}
   - {fileID: 9161248315866697456}
   m_Father: {fileID: 5373818212242617712}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3005,9 +2907,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5373818211710501885}
-  - {fileID: 1290828332}
   - {fileID: 5373818213099523180}
-  - {fileID: 853898399}
   - {fileID: 5273798079555764721}
   - {fileID: 3059199190933342004}
   m_Father: {fileID: 0}
@@ -3042,7 +2942,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5373818212242617712}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5373818213099523181
 GameObject:
