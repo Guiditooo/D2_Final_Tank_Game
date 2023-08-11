@@ -11,6 +11,8 @@ namespace GT
         [SerializeField] private AudioSource scoreAudioSource = null;
         [SerializeField] private AudioSource highScoreAudioSource = null;
 
+        private bool isHighScore = false;
+
         private void Awake()
         {
             dataManager = DataManager.Instance;
@@ -21,10 +23,15 @@ namespace GT
         {
             ui.CalculateScores();
             scoreAudioSource.Play();
-            bool isHighScore = scoreManager.CompareWithHighScores(dataManager.GetTotalScore());
+            isHighScore = scoreManager.CompareWithHighScores(dataManager.GetTotalScore());
             ui.VerifyNextPanel(isHighScore);
+            
+        }
+
+        public void PlayHighScoreSound()
+        {
             if (isHighScore)
-            {
+            { 
                 highScoreAudioSource.Play();
             }
         }
