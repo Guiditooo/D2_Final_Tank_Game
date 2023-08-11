@@ -13,6 +13,13 @@ namespace GT
         public static System.Action<Quaternion> OnAim;
 
         private Coroutine moveCoroutine = null;
+        private bool alreadyRunning = false;
+        private AudioSource audioSource = null;
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         private void Update()
         {
@@ -27,11 +34,10 @@ namespace GT
                     {
                         Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
-                        if (moveCoroutine != null)
+                        if (!alreadyRunning)
                         {
-                            StopCoroutine(moveCoroutine);
+                            moveCoroutine = StartCoroutine(MoveCannon(targetPosition));
                         }
-                        moveCoroutine = StartCoroutine(MoveCannon(targetPosition));
                     }
                 }
             }
@@ -43,8 +49,10 @@ namespace GT
             Quaternion actualRotation = transform.rotation;
             float rotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, rotationAngle, 0f);
-
             float time = 0;
+            alreadyRunning = true;
+
+            audioSource.Play();
 
             while (time < aimTime)
             {
@@ -53,7 +61,7 @@ namespace GT
 
                 yield return null;
             }
-            //Debug.LogWarning("VOY A CREAR UNA BALA");
+            alreadyRunning = false;
             OnAim?.Invoke(targetRotation);
         }
 
