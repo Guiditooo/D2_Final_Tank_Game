@@ -37,7 +37,6 @@ namespace GT
                 Paused = !Paused;
                 Time.timeScale = Paused ? 0 : 1;
                 PauseStates actualState = Paused ? PauseStates.Paused : PauseStates.Resumed;
-                Debug.Log("Envio estado de pausa: " + Paused);
                 OnPauseStateChange?.Invoke(actualState);
             }
         }

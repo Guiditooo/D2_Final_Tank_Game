@@ -49,7 +49,6 @@ namespace GT
             foreach (string key in parameters.Keys)
             {
                 PlayerPrefs.SetInt(key, parameters[key]);
-                Debug.Log("Saved Followin' Params: " + key + " - " + parameters[key]);
                 PlayerPrefs.Save();
             }
         }

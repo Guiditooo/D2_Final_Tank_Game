@@ -8,9 +8,7 @@ namespace GT
     public class HighScoreManager
     {
         private const string HIGH_SCORE_FILE_NAME = "HighScore.top";
-
         private const char HS_SEPARATOR = '*';
-
         private const int HIGH_SCORE_COUNT = 3;
 
         private DataManager dataManager = DataManager.Instance;
@@ -79,7 +77,6 @@ namespace GT
                 }
 
             }
-            //Debug.LogWarning("El output del escore, a guardar en el archivo es: " + chain);
             EraseFileContent();
             WriteFile(chain);
         }
@@ -127,7 +124,6 @@ namespace GT
             {
                 if (!File.Exists(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME)))
                 {
-                    Debug.LogWarning("The file does not exist. A new one will be created.");
                     CreateFile();
                 }
 
@@ -151,7 +147,6 @@ namespace GT
             {
                 if (!File.Exists(Path.Combine(Application.dataPath, HIGH_SCORE_FILE_NAME)))
                 {
-                    Debug.LogWarning("The file does not exist. A new one will be created.");
                     CreateFile();
                 }
 
