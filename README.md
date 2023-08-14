@@ -50,8 +50,8 @@
 * [2] - Animations: The game implements Animator/Controller on UI and Gameplay.
 * [3] - Correct use of some kind of Post-Processing.
 * [4] - Terrain: Instead of using a plane as terrain, use a smooth curved terrain. (Ex: Perling noice generated terrain).
-* [5] - No Warnings on the code.
-* [6] - Publish the game on itch.io. Released on GitHub and has a README.md ALMOST
+* [5] - No Warnings on the code. DONE
+* [6] - Publish the game on itch.io. Released on GitHub and has a README.md DONE
 
 # Advanced Requirements - From 8 to 10
 NOTE: It means a high detail level. Not a super realistic game, but a game with a high level of polish.
