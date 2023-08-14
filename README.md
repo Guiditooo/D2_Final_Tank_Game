@@ -1,6 +1,9 @@
 # D2_Final_Tank_Game
  - Final exam: a tank game. by Guido Tello.
+ - Teacher: Sergio Baretto.
  - Image Campus Signature: Practica Profesional II: Desarrollo de videojuegos II.
+
+ - Feel free to try it at: https://guiditooo.itch.io/final-tank-game.
 
 # Game Requirements
  -Main Menu-
