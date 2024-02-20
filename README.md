@@ -2,7 +2,6 @@
  - Final exam: a tank game. by Guido Tello.
  - Teacher: Baretto Sergio - Varela Aloisio.
  - Image Campus Signature: Practica Profesional II: Desarrollo de videojuegos II.
-
  - Feel free to try it at: https://guiditooo.itch.io/final-tank-game.
 
 # Game Requirements
@@ -62,12 +61,12 @@ NOTE: It means a high detail level. Not a super realistic game, but a game with 
 * [ ] - Polish everything on the game. Get a rally good UX or Game Feel (Sounds, Animations, Easter Eggs, High Positive Feedbacks).
 * [ ] - Implement any new Unity components.
 
-# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------
 
 # Evaluation & Targets
- $ NOTE: The test focuses on the stability of the game and the code.
- $ NOTE2: The target of this test is to enlarge the portfolio.
- $ NOTE3: if you use the code of a third party, give them the credits.
+  NOTE: The test focuses on the stability of the game and the code.
+  NOTE2: The target of this test is to enlarge the portfolio.
+  NOTE3: if you use the code of a third party, give them the credits.
 * [1] - Unity Project: Organization. Correct use of Unity's systems & elements. Using Prefabs. Serializable variables. Version control.
 * [2] - Code: Follow standards of C#. Good Practices. Short & Clear Code. Aspects of design.
 * [3] - Usability: The game is understandable by itself, or it has at least a Tutorial, Instructions or Hints.
