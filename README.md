@@ -1,6 +1,6 @@
 # D2_Final_Tank_Game
  - Final exam: a tank game. by Guido Tello.
- - Teacher: Sergio Baretto.
+ - Teacher: Baretto Sergio - Varela Aloisio.
  - Image Campus Signature: Practica Profesional II: Desarrollo de videojuegos II.
 
  - Feel free to try it at: https://guiditooo.itch.io/final-tank-game.
@@ -37,30 +37,30 @@
    * Main Menu Button: It will bring you to the Main Menu, saving your score. DONE
 
 # Basic Requirements From 1 to 4
-* [1] - The project must not contain errors: on editor console, while building, nor runtime crashes. DONE
-* [2] - Every piece of code MUST be contained by a custom namespace. DONE
-* [3] - The Main Menu shows the devs and artists names. This text must be a TextAsset. DONE
-* [4] - The UI MUST be responsive. DONE
-* [5] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds. DONE
-* [6] - The audio would be saved using PlayerPrefs. DONE
-* [7] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI. DONE
-* [8] - There MUST exist a pause Tab in Gameplay. DONE
-* [9] - The project MUST be clean. Remove any deprecated or useless assets. DONE
-* [10] - The project has 3 scenes: Menu, Gameplay & GameOver DONE
+* [ ] - The project must not contain errors: on editor console, while building, nor runtime crashes.
+* [ ] - Every piece of code MUST be contained by a custom namespace.
+* [ ] - The Main Menu shows the devs and artists names. This text must be a TextAsset.
+* [ ] - The UI MUST be responsive.
+* [ ] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
+* [ ] - The audio would be saved using PlayerPrefs.
+* [ ] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI.
+* [ ] - There MUST exist a pause Tab in Gameplay.
+* [ ] - The project MUST be clean. Remove any deprecated or useless assets.
+* [ ] - The project has 3 scenes: Menu, Gameplay & GameOver.
 
 # Medium Requirements - From 5 to 7 
-* [1] - Implement Particles somewhere.
-* [2] - Animations: The game implements Animator/Controller on UI and Gameplay.
-* [3] - Correct use of some kind of Post-Processing.
-* [4] - Terrain: Instead of using a plane as terrain, use a smooth curved terrain. (Ex: Perling noice generated terrain).
-* [5] - No Warnings on the code. DONE
-* [6] - Publish the game on itch.io. Released on GitHub and has a README.md DONE
+* [ ] - Implement Particles somewhere. (Trail counts as particle?)
+* [ ] - Animations: The game implements Animator/Controller on UI and Gameplay.
+* [ ] - Correct use of some kind of Post-Processing.
+* [ ] - Terrain: Instead of using a plane as terrain, use a smooth curved terrain. (Ex: Perling noice generated terrain).
+* [ ] - No Warnings on the code. 
+* [ ] - Publish the game on itch.io. Released on GitHub and has a README.md.
 
 # Advanced Requirements - From 8 to 10
 NOTE: It means a high detail level. Not a super realistic game, but a game with a high level of polish.
-* [1] - Use Image Campus' made assets. DONE
-* [2] - Polish everything on the game. Get a rally good UX or Game Feel (Sounds, Animations, Easter Eggs, High Positive Feedbacks).
-* [3] - Implement any new Unity components.
+* [ ] - Use Image Campus' made assets.
+* [ ] - Polish everything on the game. Get a rally good UX or Game Feel (Sounds, Animations, Easter Eggs, High Positive Feedbacks).
+* [ ] - Implement any new Unity components.
 
 # ----------------------------------------------------------------------------
 
