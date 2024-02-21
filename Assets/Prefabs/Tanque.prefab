@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 45
-  movementSpeed: 25
-  brakeForce: 150
+  movementSpeed: 30
+  brakeForce: 300
   antiRotationForce: 1000
 --- !u!1 &2364500621624064217
 GameObject:

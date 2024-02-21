@@ -8,16 +8,20 @@ namespace GT
 {
     public class ParamConfigurator : MonoBehaviour
     {
-        [SerializeField] Toggle isTesting = null;
+        [SerializeField] private GameObject configSection = null;
+        [SerializeField] private GameObject testingSection = null;
+        [SerializeField] private Image tickImage = null;
 
         private Dictionary<string, int> parameters = new Dictionary<string, int>();
 
         private DataManager dataManager = null;
 
+        private bool testingMode = false;
+
         public void SaveParameters()
         {
-            PlayerPrefs.SetInt("Testing", isTesting.isOn ? 1 : 0);
-            if (isTesting.isOn)
+            PlayerPrefs.SetInt("Testing", testingMode ? 1 : 0);
+            if (testingMode)
             {
                 dataManager = DataManager.TestingInstance;
             }
@@ -61,6 +65,24 @@ namespace GT
                 }
             }
         }
+
+        public void ToggleTestingMode()
+        {
+            testingMode = !testingMode;
+            if (testingMode)
+            {
+                configSection.SetActive(false);
+                testingSection.SetActive(true);
+                tickImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                configSection.SetActive(true);
+                testingSection.SetActive(false);
+                tickImage.gameObject.SetActive(false);
+            }
+        }
+
 
     }
 }
