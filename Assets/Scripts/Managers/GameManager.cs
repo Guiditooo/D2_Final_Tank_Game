@@ -23,6 +23,9 @@ namespace GT
         [Header("Game Over Scene Reference")]
         [SerializeField] private string gameOverSceneName = "";
 
+        [Header("Game Over Scene Reference")]
+        [SerializeField] private GameDataConfiguration dataConfig = null;
+
         private float initialTime;
         private float timer;
         private int timerInt;
@@ -34,24 +37,29 @@ namespace GT
 
         private void Awake()
         {
-            dataManager = DataManager.Instance;
+            if (PlayerPrefs.HasKey("Testing"))
+                dataManager = PlayerPrefs.GetInt("Testing") == 1 ? DataManager.TestingInstance : DataManager.Instance;
+            else
+            {
+                dataManager = DataManager.TestingInstance;
+                dataManager.SetGameDataConfiguration(dataConfig);
+                PlayerPrefs.SetInt("Testing", 0);
+            }
             bombSpawner = BombSpawner.Instance;
 
             SetInitialTime();
             SetBombCount();
-            timerInt = (int)initialTime;
             timer = 0;
             GameRunning = true;
             bombSpawner.OnAllBombsDestroyed += GameOver;
         }
-        private void OnDestroy()
-        {
-            bombSpawner.OnAllBombsDestroyed -= GameOver;
-        }
+        
 
         private void Start()
         {
             bombSpawner?.StartSpawningBombs(bombCount, dataManager.GetBombDistanceFromPlayer(), playerTransform, dataManager.GetBombSpawnDelay());
+            if (dataManager.GetGameMode() == GameMode.Testing)
+                bombCount = -1;
             uiController.SetBombCounter(bombCount);
         }
 
@@ -59,23 +67,29 @@ namespace GT
         {
             if (GameRunning)
             {
-                timer += Time.deltaTime * timerMultiplier;
-                if (timer > 1)
+                if (dataManager.GetGameMode() != GameMode.Testing)
                 {
-                    timer--;
-                    timerInt--;
-                    if (timerInt < 0)
+                    timer += Time.deltaTime * timerMultiplier;
+                    if (timer > 1)
                     {
-                        GameOver();
-                    }
-                    else
-                    {
-                        uiController.UpdateTimerText(timerInt);
+                        timer--;
+                        timerInt--;
+                        if (timerInt < 0)
+                        {
+                            GameOver();
+                        }
+                        else
+                        {
+                            uiController.UpdateTimerText(timerInt);
+                        }
                     }
                 }
             }
         }
-
+        private void OnDestroy()
+        {
+            bombSpawner.OnAllBombsDestroyed -= GameOver;
+        }
         private void SetInitialTime()
         {
             if (bypassSavedTime)
@@ -84,8 +98,9 @@ namespace GT
             }
             else
             {
-                initialTime = dataManager.GetInitialTime();
+                initialTime = dataManager.GetGameMode() == GameMode.Normal ? dataManager.GetInitialTime() : -1;
             }
+            timerInt = (int)initialTime;
             uiController.UpdateTimerText(timerInt);
         }
 

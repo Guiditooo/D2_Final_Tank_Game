@@ -10,14 +10,45 @@ namespace GT
 
         private const int HIGH_SCORE_COUNT = 3;
 
-        private static DataManager instance;
-        public static DataManager Instance { get { return instance; } }
+        private static DataManager instance = null;
+        public static DataManager Instance 
+        { 
+            get
+            {
+                if (!instance)
+                {
+                    instance = new DataManager();
+                    DontDestroyOnLoad(instance);
+                }
+                return instance;
+            } 
+        }
+        public static DataManager TestingInstance
+        {
+            get
+            {
+                if (!instance)
+                {
+                    instance = CreateTestingData();
+                    DontDestroyOnLoad(instance);
+                }
+                return instance;
+            }
+        }
+
+        private GameMode mode = GameMode.Testing;
 
         private float sessionTime = 0;
 
         private PlayerData playerData;//Player related data => name, bomb score & time score
         private GameData gameData;//Game related data => selected time & bombs
+
+        private HighScore[] highScores = new HighScore[HIGH_SCORE_COUNT];
         public int GetSessionTime() => (int)sessionTime;
+
+        public GameMode GetGameMode() => mode;
+
+        public void SetGameDataConfiguration(GameDataConfiguration newGameDataConfiguration) => gameDataConfig = newGameDataConfiguration;
 
         public float GetHighlightColorDelay() => gameDataConfig.highlightNewScoreColorDelay;
 
@@ -41,10 +72,29 @@ namespace GT
 
         public HighScore[] GetHighScores() => highScores;
 
-        public void SetGameData(int bombQuantity, int timeQuantity)
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject); // Esto evita que se destruya el objeto cuando cambias de escena
+            }
+            else
+            {
+                Destroy(gameObject); // Si ya existe una instancia, destruye este objeto duplicado
+            }
+        }
+        private void Update()
+        {
+            sessionTime += Time.deltaTime;
+        }
+
+
+        public void SetGameData(int bombQuantity, int timeQuantity, GameMode gameMode)
         {
             gameData.selectedBombCount = bombQuantity;
             gameData.selectedPlayTime = timeQuantity;
+            mode = gameMode;
         }
         public void SetLastHiScoreUser(string user)
         {
@@ -60,25 +110,14 @@ namespace GT
             playerData.lastTotalScore = playerData.lastBombScore + playerData.lastTimeScore;
         }
 
-        private HighScore[] highScores = new HighScore[HIGH_SCORE_COUNT];
 
-
-        private void Update()
+        private static DataManager CreateTestingData()
         {
-            sessionTime += Time.deltaTime;
-        }
-
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject); // Esto evita que se destruya el objeto cuando cambias de escena
-            }
-            else
-            {
-                Destroy(gameObject); // Si ya existe una instancia, destruye este objeto duplicado
-            }
+            DataManager DM = new DataManager();
+            DM.SetGameData(0, 0, GameMode.Testing);
+            DM.SetLastHiScoreUser("TST");
+            DM.SavePlayedGameStats(0, 0);
+            return DM;
         }
     }
 }

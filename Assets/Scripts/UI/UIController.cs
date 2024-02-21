@@ -86,7 +86,7 @@ namespace GT
 
         public void UpdateTimerText(int newValue)
         {
-            timerText.text = newValue.ToString();
+            timerText.text = newValue != -1 ? newValue.ToString() : "Unlimited";
         }
 
         private void UpdateBombCounter()
@@ -96,7 +96,7 @@ namespace GT
 
         public void SetBombCounter(int bombCount)
         {
-            remainingBombs.text = bombCount.ToString();
+            remainingBombs.text = bombCount != -1 ? bombCount.ToString() : "Testing Mode";
         }
 
         private void ToggleMute()

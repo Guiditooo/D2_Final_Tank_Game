@@ -27,6 +27,18 @@ namespace GT
         private float valueBeforeMutting = 0.0f;
 
         public static AudioManager instance;
+        public static AudioManager Instance
+        {
+            get
+            {
+                if (!instance)
+                {
+                    instance = GetNewAM();
+                    DontDestroyOnLoad(instance);
+                }
+                return instance;
+            }
+        }
 
         public bool IsMuted { private set; get; } = false;
 
@@ -43,6 +55,14 @@ namespace GT
                 Destroy(gameObject); // Si ya existe una instancia, destruye este objeto duplicado
             }
         }
+        private void Start()
+        {
+            audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
+            audioMixer.SetFloat(AM_SOUND_KEY, soundVolume);
+            audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
+        }
+
+
 
         private void InitializeAudioSettings()
         {
@@ -52,12 +72,15 @@ namespace GT
             soundVolume = LookForPlayerPrefs(AUDIO_SOUND_KEY, soundVolume);
             musicVolume = LookForPlayerPrefs(AUDIO_MUSIC_KEY, musicVolume);
         }
-
-        private void Start()
+        private static AudioManager GetNewAM()
         {
-            audioMixer.SetFloat(AM_MASTER_KEY, masterVolume);
-            audioMixer.SetFloat(AM_SOUND_KEY, soundVolume);
-            audioMixer.SetFloat(AM_MUSIC_KEY, musicVolume);
+            AudioManager newAM = new AudioManager();
+            newAM.masterVolume = LookForPlayerPrefs(AUDIO_MASTER_KEY, newAM.masterVolume);
+            if (newAM.masterVolume == newAM.minDecibels)
+                newAM.IsMuted = true;
+            newAM.soundVolume = LookForPlayerPrefs(AUDIO_SOUND_KEY, newAM.soundVolume);
+            newAM.musicVolume = LookForPlayerPrefs(AUDIO_MUSIC_KEY, newAM.musicVolume);
+            return newAM;
         }
 
         public void SetAudioMasterRef(float master)
@@ -118,7 +141,7 @@ namespace GT
             return minDecibels + (Mathf.Log10(sliderValue) / Mathf.Log10(100)) * (maxDecibels - minDecibels);
         }
 
-        private float LookForPlayerPrefs(string key, float value)
+        private static float LookForPlayerPrefs(string key, float value)
         {
             return PlayerPrefs.HasKey(key) ? PlayerPrefs.GetFloat(key) : value;
         }
