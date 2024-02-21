@@ -19,7 +19,7 @@
  -Game Settings Tab-
    * Ball Count: It will set the amount of bombs that will be spawned on the game. DONE
    * Time: It sets the time that the player has for shooting every bomb. DONE
-   * $NOTE: The score will be calculated in base of that values. DONE
+   * Note: The score will be calculated in base of that values. DONE
 
  -Gameplay-
    * HUD(will be shown while the game is unpaused) Countdown: It Will be your maximum problem, if it reaches 0, the game will be over.  DONE
@@ -36,28 +36,28 @@
    * Main Menu Button: It will bring you to the Main Menu, saving your score. DONE
 
 # Basic Requirements From 1 to 4
-* [ ] - The project must not contain errors: on editor console, while building, nor runtime crashes.
-* [ ] - Every piece of code MUST be contained by a custom namespace.
-* [ ] - The Main Menu shows the devs and artists names. This text must be a TextAsset.
-* [ ] - The UI MUST be responsive.
-* [ ] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
-* [ ] - The audio would be saved using PlayerPrefs.
-* [ ] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI.
-* [ ] - There MUST exist a pause Tab in Gameplay.
-* [ ] - The project MUST be clean. Remove any deprecated or useless assets.
-* [ ] - The project has 3 scenes: Menu, Gameplay & GameOver.
+* [x] - The project must not contain errors: on editor console, while building, nor runtime crashes.
+* [x] - Every piece of code MUST be contained by a custom namespace.
+* [x] - The Main Menu shows the devs and artists names. This text must be a TextAsset.
+* [x] - The UI MUST be responsive.
+* [x] - The game got at least 3 sounds and a music track. Just like ambient music or button hover sounds.
+* [x] - The audio would be saved using PlayerPrefs.
+* [x] - The audio MUST be separated in 3: Audio Sources/Listeners; PlayerPrefes; UI.
+* [x] - There MUST exist a pause Tab in Gameplay.
+* [x] - The project MUST be clean. Remove any deprecated or useless assets.
+* [x] - The project has 3 scenes: Menu, Gameplay & GameOver.
 
 # Medium Requirements - From 5 to 7 
 * [ ] - Implement Particles somewhere. (Trail counts as particle?)
-* [ ] - Animations: The game implements Animator/Controller on UI and Gameplay.
+* [x] - Animations: The game implements Animator/Controller on UI and Gameplay.
 * [ ] - Correct use of some kind of Post-Processing.
 * [ ] - Terrain: Instead of using a plane as terrain, use a smooth curved terrain. (Ex: Perling noice generated terrain).
-* [ ] - No Warnings on the code. 
-* [ ] - Publish the game on itch.io. Released on GitHub and has a README.md.
+* [x] - No Warnings on the code. 
+* [x] - Publish the game on itch.io. Released on GitHub and has a README.md.
 
 # Advanced Requirements - From 8 to 10
 NOTE: It means a high detail level. Not a super realistic game, but a game with a high level of polish.
-* [ ] - Use Image Campus' made assets.
+* [x] - Use Image Campus' made assets.
 * [ ] - Polish everything on the game. Get a rally good UX or Game Feel (Sounds, Animations, Easter Eggs, High Positive Feedbacks).
 * [ ] - Implement any new Unity components.
 

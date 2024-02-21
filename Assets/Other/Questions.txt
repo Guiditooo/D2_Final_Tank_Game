@@ -14,6 +14,4 @@ Si tengo varios scripts, como es mejor accederlos?
 		private GameManager gameManager = GameManager.Instance;
 	* Por medio de [SerializeField] private GameManager gameManager.
 
-Por otra parte, hay algo que me llama mucho la atencion. Para que el uso de namespace? Esto me lleva a pensar que la forma que estoy usando no es la mejor. Cuando deberia no utilizarlo, de modo que sea efectivo el uso del mismo? 
-
 Son bastantes dudas, pero si no me las saco, no termino de entender y me gustaria hacerlo.
