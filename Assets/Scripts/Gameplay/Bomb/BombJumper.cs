@@ -8,20 +8,34 @@ namespace GT
     {
         private Rigidbody rb;
         private BombConfiguration config = null;
-        private float bounceForce = 0f;
+        private bool goingDown = false;
 
         public BombJumper(GameObject bomb, BombConfiguration bombConfig)
         {
             rb = bomb.GetComponentInChildren<Rigidbody>();
             config = bombConfig;
-            bounceForce = config.bounceForce;
+            goingDown = false;
         }
         public void ExecuteBehavior()
         {
-            if (rb != null && rb.velocity.magnitude < 0.05f)
+            if (goingDown)
             {
-                rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+                if (rb.position.y<config.minHeight)
+                {
+                    goingDown = false;
+                }
             }
+            else
+            {
+                if(rb.position.y>config.maxHeight)
+                {
+                    goingDown = true;
+                }
+            }
+
+            //int direction = goingDown ? -1 : 1;
+
+            rb.MovePosition(rb.position + (goingDown ? -1 : 1) * config.bounceForce * Vector3.up * Time.fixedDeltaTime);
         }
 
     }

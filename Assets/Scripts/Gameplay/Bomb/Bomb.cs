@@ -20,10 +20,6 @@ namespace GT
         }
         public void GetDestroyed()
         {
-            //Particulas de explosion
-            GameObject go = Instantiate(new GameObject(), transform.position, Quaternion.identity);
-            go.AddComponent<AudioSource>();
-
             OnGettingDestroyed?.Invoke(this);
             Destroy(this.gameObject);
         }

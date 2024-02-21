@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 namespace GT
 {
-
     public class OptionValueChanger : MonoBehaviour
     {
         [SerializeField] private TMP_Text value = null;

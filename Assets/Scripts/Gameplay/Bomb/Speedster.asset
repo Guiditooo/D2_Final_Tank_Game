@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0034c24024e9de341b0ef6453199084c, type: 3}
-  m_Name: Default
+  m_Name: Speedster
   m_EditorClassIdentifier: 
-  chaseSpeed: 5
+  chaseSpeed: 15
   bounceForce: 10
   maxHeight: 9
   minHeight: 4

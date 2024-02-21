@@ -47,11 +47,10 @@ namespace GT
 
         IEnumerator SpawnBombs(int bombCount, float distanceFromPlayer, Transform playerTransform, float spawnDelay)
         {
-            GetAllPosiblePositions(bombCount);
-
             for (int i = 0; i < bombCount; i++)
             {
                 Vector3 circlePos = CalculateCirclePosition(GetAnAngle(), distanceFromPlayer, playerTransform);
+                Debug.Log("Bomb " + i + " spawned at " + circlePos);
                 SpawnBomb(circlePos, playerTransform);
                 yield return new WaitForSeconds(spawnDelay);
             }
@@ -91,11 +90,13 @@ namespace GT
 
         private void GetAllPosiblePositions(int bombCount)
         {
+            Debug.Log("Getting All Bomb Positions");
             float anglesBetweenBombs = 360f / bombCount;
 
             for (int i = 0; i < bombCount; i++)
             {
                 posibleAngles.Add(anglesBetweenBombs * i);
+                Debug.Log("Possible possition " + i + ":" + posibleAngles[i]);
             }
         }
 

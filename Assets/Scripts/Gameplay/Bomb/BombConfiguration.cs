@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GT
@@ -9,6 +7,8 @@ namespace GT
     {
         public int chaseSpeed;
         public int bounceForce;
+        public float maxHeight;
+        public float minHeight;
     }
 
 }
