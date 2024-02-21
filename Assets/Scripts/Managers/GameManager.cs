@@ -37,14 +37,8 @@ namespace GT
 
         private void Awake()
         {
-            if (PlayerPrefs.HasKey("Testing"))
-                dataManager = PlayerPrefs.GetInt("Testing") == 1 ? DataManager.TestingInstance : DataManager.Instance;
-            else
-            {
-                dataManager = DataManager.TestingInstance;
-                dataManager.SetGameDataConfiguration(dataConfig);
-                PlayerPrefs.SetInt("Testing", 0);
-            }
+            dataManager = DataManager.Instance;
+            dataManager.SetGameDataConfiguration(dataConfig);
             bombSpawner = BombSpawner.Instance;
 
             SetInitialTime();

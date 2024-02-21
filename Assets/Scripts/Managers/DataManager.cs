@@ -23,18 +23,6 @@ namespace GT
                 return instance;
             } 
         }
-        public static DataManager TestingInstance
-        {
-            get
-            {
-                if (!instance)
-                {
-                    instance = CreateTestingData();
-                    DontDestroyOnLoad(instance);
-                }
-                return instance;
-            }
-        }
 
         private GameMode mode = GameMode.Testing;
 
@@ -109,15 +97,10 @@ namespace GT
             playerData.lastTimeScore = GetScorePerSecond() * (remainingSeconds + 1);
             playerData.lastTotalScore = playerData.lastBombScore + playerData.lastTimeScore;
         }
-
-
-        private static DataManager CreateTestingData()
+        
+        public void SetTestingMode()
         {
-            DataManager DM = new DataManager();
-            DM.SetGameData(0, 0, GameMode.Testing);
-            DM.SetLastHiScoreUser("TST");
-            DM.SavePlayedGameStats(0, 0);
-            return DM;
+            instance.SetGameData(0, 0, GameMode.Testing);
         }
     }
 }

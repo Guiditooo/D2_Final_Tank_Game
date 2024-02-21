@@ -17,18 +17,31 @@ namespace GT
         private DataManager dataManager = null;
 
         private bool testingMode = false;
-
-        public void SaveParameters()
+        
+        private void Awake()
         {
-            PlayerPrefs.SetInt("Testing", testingMode ? 1 : 0);
-            if (testingMode)
+            if(PlayerPrefs.HasKey("Testing"))
             {
-                dataManager = DataManager.TestingInstance;
+                testingMode = PlayerPrefs.GetInt("Testing") == 1;
             }
             else
             {
-                dataManager = DataManager.Instance;
+                testingMode = false;
+            }
+            ToggleSection();
+        }
 
+        public void SaveParameters()
+        {
+            dataManager = DataManager.Instance;
+
+            PlayerPrefs.SetInt("Testing", testingMode ? 1 : 0);
+            if (testingMode)
+            {
+                dataManager.SetTestingMode();
+            }
+            else
+            {
 
                 int bombCount = 0;
                 int timeCount = 0;
@@ -69,6 +82,11 @@ namespace GT
         public void ToggleTestingMode()
         {
             testingMode = !testingMode;
+            ToggleSection();
+        }
+
+        private void ToggleSection()
+        {
             if (testingMode)
             {
                 configSection.SetActive(false);
@@ -82,7 +100,6 @@ namespace GT
                 tickImage.gameObject.SetActive(false);
             }
         }
-
 
     }
 }
