@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 214628440216521170}
   m_Layer: 7
   m_Name: Tanque
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.83, y: 3.33, z: 10.3}
-  m_Center: {x: 0.112, y: -1.04, z: 0.13}
+  m_Size: {x: 6.83, y: 9.9929285, z: 10.3}
+  m_Center: {x: 0.11199999, y: 2.2914643, z: 0.13000011}
 --- !u!114 &214628440216521170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimTime: 1
   aimSpeed: 3
+  layerRaycast:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!82 &479492056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -501,6 +504,7 @@ GameObject:
   - component: {fileID: 9201030489223646036}
   - component: {fileID: 8355943985986198301}
   - component: {fileID: 241398146}
+  - component: {fileID: 5069982338625253426}
   m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
@@ -686,6 +690,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5069982338625253426
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317909504646161005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13495085eff21bd47a093c04d51daffa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7844470330439481548
 GameObject:
   m_ObjectHideFlags: 0

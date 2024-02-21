@@ -12,12 +12,16 @@ namespace GT
         [SerializeField] private int bulletAmmount = 5;
 
         private AudioSource audioSource = null;
+        private Animator animator = null;
 
         private List<GameObject> bulletList = new List<GameObject>();
+
+        private bool hasShoot = false;
 
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            animator = GetComponent<Animator>();
             Aimer.OnAim += Shoot;
         }
 
@@ -28,6 +32,14 @@ namespace GT
                 GameObject go = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation, bulletFolder);
                 go.SetActive(false);
                 bulletList.Add(go);
+            }
+        }
+        private void Update()
+        {
+            if(hasShoot)
+            {
+                animator.ResetTrigger("OnShoot");
+                hasShoot = false;
             }
         }
 
@@ -44,10 +56,17 @@ namespace GT
                 else
                 {
                     audioSource.Play();
+                    MakeShootAnimation();
                     bullet.GetComponent<Bullet>().ResetBullet(bulletSpawnPoint);
                     return;
                 }
             }
+        }
+
+        private void MakeShootAnimation()
+        {
+            animator.SetTrigger("OnShoot");
+            hasShoot = true;
         }
 
     }

@@ -41,6 +41,7 @@ namespace GT
         private void StartExplotion(Bomb bomb)
         {
             StartCoroutine(StartExploding());
+            //Particulas de explosion
         }
 
     }

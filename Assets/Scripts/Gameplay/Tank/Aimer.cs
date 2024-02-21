@@ -9,6 +9,7 @@ namespace GT
 
         [SerializeField] private float aimTime = 1f; //en segundos que quiero que tarde
         [SerializeField] private float aimSpeed = 1f; //en segundos que quiero que tarde
+        [SerializeField] private LayerMask layerRaycast; 
 
         public static System.Action<Quaternion> OnAim;
 
@@ -30,8 +31,9 @@ namespace GT
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
-                    if (Physics.Raycast(ray, out hit))
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity,layerRaycast))
                     {
+                        Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                         Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
                         if (!alreadyRunning)
