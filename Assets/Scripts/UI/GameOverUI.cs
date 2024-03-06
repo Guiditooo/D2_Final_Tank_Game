@@ -60,7 +60,10 @@ namespace GT
         private void Start()
         {
             ShowPanel(gameOverPanel);
-            ShowPanel(summaryPanel);
+            if (dataManager.justPlayed)
+                ShowPanel(summaryPanel);
+            else
+                LoadHighScores();
         }
         private void OnDestroy()
         {
@@ -149,6 +152,10 @@ namespace GT
             SecondPosScore.text = highScores[1].score.ToString();
             ThirdPosScore.text = highScores[2].score.ToString();
 
+            FirstPosName.color = defaultFontColor;
+            SecondPosName.color = defaultFontColor;
+            ThirdPosName.color = defaultFontColor;
+
             FirstPosScore.color = defaultFontColor;
             SecondPosScore.color = defaultFontColor;
             ThirdPosScore.color = defaultFontColor;
@@ -158,6 +165,7 @@ namespace GT
 
         public void ResetHighScore()
         {
+            reseted = true;
             scoreManager.ResetHighScores();
             LoadHighScores();
         }

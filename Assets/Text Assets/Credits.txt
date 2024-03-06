@@ -2,3 +2,4 @@ Game Name: ~ Tank Game X~
 
 Developer: Tello, Guido
 Tank Artist: Monferini, Nina
+Cursor Artist: Gimenez, Rocio

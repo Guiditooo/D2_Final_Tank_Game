@@ -18,6 +18,8 @@ namespace GT
 
         private CanvasGroup actualPanel;
 
+        private DataManager dataManager = null;
+
         private void Awake()
         {
             actualPanel = startingPanel;
@@ -87,6 +89,8 @@ namespace GT
 
         public void LoadHighScore()
         {
+            dataManager = DataManager.Instance;
+            dataManager.justPlayed = false;
             SceneManager.LoadScene("GameOver");
         }
 

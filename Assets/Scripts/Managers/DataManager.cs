@@ -60,6 +60,8 @@ namespace GT
 
         public HighScore[] GetHighScores() => highScores;
 
+        public bool justPlayed = false;
+
         private void Awake()
         {
             if (instance == null)

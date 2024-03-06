@@ -54,6 +54,11 @@ namespace GT
             SaveHighScores();
         }
 
+        public void LoadHighScore()
+        {
+            RetrieveHighScores();
+        }
+
         private void RetrieveHighScores()
         {
             string content = ReadFile();

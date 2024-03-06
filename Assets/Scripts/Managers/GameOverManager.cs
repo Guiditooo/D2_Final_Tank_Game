@@ -21,11 +21,17 @@ namespace GT
 
         void Start()
         {
-            ui.CalculateScores();
-            scoreAudioSource.Play();
-            isHighScore = scoreManager.CompareWithHighScores(dataManager.GetTotalScore());
-            ui.VerifyNextPanel(isHighScore);
-            
+            if (dataManager.justPlayed)
+            {
+                ui.CalculateScores();
+                scoreAudioSource.Play();
+                isHighScore = scoreManager.CompareWithHighScores(dataManager.GetTotalScore());
+                ui.VerifyNextPanel(isHighScore);
+            }
+            else
+            {
+                scoreManager.LoadHighScore();
+            }
         }
 
         public void PlayHighScoreSound()

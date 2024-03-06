@@ -46,6 +46,7 @@ namespace GT
             timer = 0;
             GameRunning = true;
             bombSpawner.OnAllBombsDestroyed += GameOver;
+            dataManager.justPlayed = true;
         }
         
 
