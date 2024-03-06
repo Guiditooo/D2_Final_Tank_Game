@@ -66,17 +66,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Guido Tello
+  m_text: 'Developer: Tello, Guido
+
+    Tank Artist: Monferini, Nina'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b44ed0acbbf72f9439d3f9f1a6173ce8, type: 2}
-  m_sharedMaterial: {fileID: 184349938196882577, guid: b44ed0acbbf72f9439d3f9f1a6173ce8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c82d3c766e705144bacc057e143dd7b0, type: 2}
+  m_sharedMaterial: {fileID: -7475278541986904687, guid: c82d3c766e705144bacc057e143dd7b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4293388263
+  m_fontColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,7 +95,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 144
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
