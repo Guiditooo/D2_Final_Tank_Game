@@ -66,9 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developer: Tello, Guido
-
-    Tank Artist: Monferini, Nina'
+  m_text: NaN%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c82d3c766e705144bacc057e143dd7b0, type: 2}
   m_sharedMaterial: {fileID: -7475278541986904687, guid: c82d3c766e705144bacc057e143dd7b0, type: 2}
