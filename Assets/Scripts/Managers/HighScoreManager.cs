@@ -48,6 +48,12 @@ namespace GT
             return plancingIndex;
         }
 
+        public void ResetHighScores()
+        {
+            dataManager.ClearHighScores();
+            SaveHighScores();
+        }
+
         private void RetrieveHighScores()
         {
             string content = ReadFile();

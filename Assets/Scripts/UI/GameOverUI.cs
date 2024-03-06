@@ -11,6 +11,7 @@ namespace GT
     {
         [Header("Misc")]
         [SerializeField] private float colorMultiplier = 5.0f;
+        [SerializeField] private Color defaultFontColor = default;
 
         [Header("Menu scene")]
         [SerializeField] private string menuSceneName = "";
@@ -40,6 +41,9 @@ namespace GT
 
         [SerializeField] private DataManager dataManager = null;
         [SerializeField] private HighScoreManager scoreManager = null;
+
+
+        private bool reseted = false;
 
         private void Awake()
         {
@@ -145,9 +149,18 @@ namespace GT
             SecondPosScore.text = highScores[1].score.ToString();
             ThirdPosScore.text = highScores[2].score.ToString();
 
+            FirstPosScore.color = defaultFontColor;
+            SecondPosScore.color = defaultFontColor;
+            ThirdPosScore.color = defaultFontColor;
+
             ShowPanel(highScorePanel);
         }
 
+        public void ResetHighScore()
+        {
+            scoreManager.ResetHighScores();
+            LoadHighScores();
+        }
 
         public void SaveHighScore()
         {
@@ -162,6 +175,7 @@ namespace GT
             }
             StartCoroutine(HighLightScoreSlot(slotIndex));
         }
+
         private IEnumerator HighLightScoreSlot(int index)
         {
             Score BG = ScoreSlotBG[index];
@@ -178,21 +192,25 @@ namespace GT
 
             float time = 0;
 
-            while (true)
+            while (!reseted)
             {
                 time += Time.deltaTime * colorMultiplier;
-                float lerpTime = time / dataManager.GetBombSpawnDelay();
-                color = Color.Lerp(textInScore[0].color, color, lerpTime);
-                for (int i = 0; i < textInScore.Length; i++)
-                {
-                    textInScore[i].color = color;
-                }
+                
                 if (time > dataManager.GetBombSpawnDelay())
                 {
-                    time -= dataManager.GetBombSpawnDelay();
+                    time = 0;
+                    for (int i = 0; i < textInScore.Length; i++)
+                    {
+                        textInScore[i].color = color;
+                    }
                     color = Random.ColorHSV(0.7f, 1f, 0.7f, 1f, 0.7f, 1f, 0.85f, 1f);
                 }
                 yield return new WaitForSeconds(dataManager.GetBombSpawnDelay());
+            }
+
+            for (int i = 0; i < textInScore.Length; i++)
+            {
+                textInScore[i].color = defaultFontColor;
             }
 
         }

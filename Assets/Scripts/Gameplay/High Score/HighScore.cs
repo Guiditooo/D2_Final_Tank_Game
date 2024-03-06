@@ -18,6 +18,11 @@ namespace GT
             hs.score = 0;
             return hs;
         }
+        public void Reset()
+        {
+            name = "AAA";
+            score = 0;
+        }
 
         public override string ToString() 
         {

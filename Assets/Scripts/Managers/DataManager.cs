@@ -97,6 +97,14 @@ namespace GT
             playerData.lastTimeScore = GetScorePerSecond() * (remainingSeconds + 1);
             playerData.lastTotalScore = playerData.lastBombScore + playerData.lastTimeScore;
         }
+
+        public void ClearHighScores()
+        {
+            for (int i = 0; i < HIGH_SCORE_COUNT; i++)
+            {
+                highScores[i].Reset();
+            }
+        }
         
         public void SetTestingMode()
         {
