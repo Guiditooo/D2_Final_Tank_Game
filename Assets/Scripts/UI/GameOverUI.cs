@@ -36,7 +36,7 @@ namespace GT
         [SerializeField] private TMP_Text FirstPosName = null;
         [SerializeField] private TMP_Text SecondPosName = null;
         [SerializeField] private TMP_Text ThirdPosName = null;
-        [SerializeField] private Image[] ScoreSlotBG;
+        [SerializeField] private Score[] ScoreSlotBG;
 
         [SerializeField] private DataManager dataManager = null;
         [SerializeField] private HighScoreManager scoreManager = null;
@@ -65,7 +65,7 @@ namespace GT
             summaryNextButton?.onClick.RemoveListener(LoadInputNamePanel);
             summaryNextButton?.onClick.RemoveListener(LoadHighScores);
         }
-        
+
         public void ShowPanel(CanvasGroup panel)
         {
             panel.alpha = 1;
@@ -97,7 +97,7 @@ namespace GT
 
         public void VerifyNextPanel(bool isHighScore)
         {
-            if(isHighScore)
+            if (isHighScore)
             {
                 summaryNextButton.onClick.AddListener(LoadInputNamePanel);
             }
@@ -154,7 +154,7 @@ namespace GT
             GT.HighScore hs;
             hs.name = nameInputField.text;
             hs.score = dataManager.GetTotalScore();
-            
+
             int slotIndex = scoreManager.InsertInHighScore(hs);
             if (slotIndex >= 3)
             {
@@ -164,22 +164,37 @@ namespace GT
         }
         private IEnumerator HighLightScoreSlot(int index)
         {
-            Image BG = ScoreSlotBG[index];
-            BG.color = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.20f, 0.25f);
-            Color nextColor = Random.ColorHSV(0, 1, 0, 1, 0, 1, 0.15f, 0.45f);
+            Score BG = ScoreSlotBG[index];
+            TMP_Text[] textInScore = BG.GetComponentsInChildren<TMP_Text>();
+
+            Color color = Random.ColorHSV(0.7f, 1f, 0.7f, 1f, 0.7f, 1f, 0.85f, 1f);
+
+            for (int i = 0; i < textInScore.Length; i++)
+            {
+                textInScore[i].color = color;
+            }
+
+            color = Random.ColorHSV(0.7f, 1f, 0.7f, 1f, 0.7f, 1f, 0.85f, 1f);
+
             float time = 0;
+
             while (true)
             {
                 time += Time.deltaTime * colorMultiplier;
-                Color.Lerp(BG.color, nextColor, time);
+                float lerpTime = time / dataManager.GetBombSpawnDelay();
+                color = Color.Lerp(textInScore[0].color, color, lerpTime);
+                for (int i = 0; i < textInScore.Length; i++)
+                {
+                    textInScore[i].color = color;
+                }
                 if (time > dataManager.GetBombSpawnDelay())
                 {
-                    time--;
-                    BG.color = nextColor;
-                    nextColor = Random.ColorHSV(0.6f, 1, 0.6f, 1, 0.6f, 1, 0.15f, 0.25f);
+                    time -= dataManager.GetBombSpawnDelay();
+                    color = Random.ColorHSV(0.7f, 1f, 0.7f, 1f, 0.7f, 1f, 0.85f, 1f);
                 }
                 yield return new WaitForSeconds(dataManager.GetBombSpawnDelay());
             }
+
         }
 
     }
