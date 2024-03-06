@@ -85,6 +85,11 @@ namespace GT
             SceneManager.LoadScene("Gameplay");
         }
 
+        public void LoadHighScore()
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
         private void LoadCredits()
         {
             if (creditsText != null && creditsFile != null)
